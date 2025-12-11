@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P6RRX05KBN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P6RRX05KBN');
+</script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IVSA KONYA - II. Veteriner Klinik Bilimleri Kolokyumu</title>
@@ -281,6 +291,53 @@
             .hero-info { border-left: none; align-items: center; }
             .glass-box { padding: 25px; }
         }
+
+      /* MOBİL UYUMLULUK KISMI (Mevcut kodun en altındaki yer) */
+        @media (max-width: 1024px) {
+            
+            /* --- BURASI YENİ EKLENDİ --- */
+            /* Sadece mobilde arka planı ekrana sığdırır */
+            .fixed-background {
+                background-size: contain;   /* Resmi kesmeden ekrana sığdır */
+                background-position: center center; /* Resmi tam ortala */
+                background-repeat: no-repeat; /* Tekrar etme */
+                background-attachment: fixed; /* Sayfa kayarken arkada sabit kalsın */
+            }
+            /* --------------------------- */
+
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; left: 0; width: 100%;
+                background: #020b16;
+                padding: 30px 0;
+                border-bottom: 2px solid var(--accent-gold);
+                text-align: center;
+                gap: 20px;
+            }
+            nav ul.show { display: flex; }
+            
+            #home-page {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 50px;
+                padding-top: 20px;
+            }
+            
+            .hero-logo {
+                margin: 0 auto 25px auto;
+                max-width: 200px;
+            }
+            
+            .hero-title { font-size: 2.5rem; }
+            .hero-img-container { justify-content: center; }
+            .hero-info { border-left: none; align-items: center; }
+            .glass-box { padding: 25px; }
+        }
+
+        
     </style>
 </head>
 <body>
