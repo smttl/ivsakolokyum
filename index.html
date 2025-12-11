@@ -269,7 +269,24 @@
             }
 
             /* 2. Menü */
-            .menu-toggle { display: block; }
+            .menu-toggle {
+
+                display: block;
+                position: fixed; /* Ekrana çiviler */
+                top: 20px;       /* Yukarıdan boşluk */
+                right: 20px;     /* Sağdan boşluk */
+                z-index: 10002;  /* Menünün de üstünde kalsın */
+                
+                /* Butonun arka planı olsun ki karışmasın */
+                background: rgba(2, 11, 22, 0.8);
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                text-align: center;
+                border-radius: 5px;
+                border: 1px solid rgba(255,255,255,0.2);
+                
+            }
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -278,7 +295,7 @@
                 background: rgba(2, 11, 22, 0.98);
                 padding: 20px 0;
                 border-bottom: 2px solid var(--accent-gold);
-                text-align: left;
+                text-align: center;
                 gap: 15px;
                 z-index: 9999;
             }
