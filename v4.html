@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6RRX05KBN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-P6RRX05KBN');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IVSA KONYA - II. Veteriner Klinik Bilimleri Kolokyumu</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- AYARLAR --- */
+        :root {
+            --bg-dark: #020b16; 
+            --accent-blue: #00aaff;
+            --accent-gold: #d4af37;
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --font-main: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-white);
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- ARKA PLAN (SABİT) --- */
+        .fixed-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            
+            /* SENİN RESMİN */
+            background-image: url('back.jpeg'); 
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .fixed-background::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 11, 22, 0.4); /* Yazılar okunsun diye karartma */
+            z-index: -1;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(2, 11, 22, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container img { height: 45px; cursor: pointer; }
+
+        /* MASAÜSTÜ MENÜ */
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none !important;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li a {
+            position: relative;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover { color: var(--text-white); }
+        nav ul li a:hover::after { width: 100%; }
+        
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--text-white); cursor: pointer; }
+
+        /* --- İÇERİK --- */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 5%;
+        }
+
+        .content-page {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            animation: fadeUp 0.6s ease;
+        }
+        .content-page.active { display: block; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-box {
+            background: rgba(10, 20, 35, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        h2.page-title {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(0, 170, 255, 0.3);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        /* --- ANA SAYFA --- */
+        #home-page {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        #home-page.active { display: flex; }
+
+        .hero-text { flex: 1; min-width: 300px; }
+        
+        .hero-logo {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5); 
+        }
+
+        .hero-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 20px;
+        }
+
+        .hashtag {
+            margin-top: 40px;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+        }
+
+        .hero-img-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            min-width: 300px;
+        }
+
+        .hero-img {
+            max-width: 650px; 
+            width: 100%;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.3));
+            animation: float 5s ease-in-out infinite;
+        }
+
+        @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+
+        /* Grid */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ========================================= */
+        /* MOBİL UYUMLULUK (APP MODU - SABİT EKRAN) */
+        /* ========================================= */
+        @media (max-width: 1024px) {
+            
+            /* 1. Sayfa Kaymasını Kilitle */
+            html, body {
+                overflow: hidden; 
+                height: 100%;     
+                width: 100%;
+                position: fixed; 
+            }
+
+            /* 2. Menü Ayarları */
+            .menu-toggle { display: block; z-index: 10001; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; left: 0; width: 100%;
+                background: rgba(2, 11, 22, 0.98);
+                padding: 20px 0;
+                border-bottom: 2px solid var(--accent-gold);
+                text-align: center;
+                gap: 15px;
+                z-index: 10000;
+            }
+            nav ul.show { display: flex; }
+
+            /* 3. İçerik Alanı (Ortala ve Taşanları Gizle) */
+            main {
+                height: 100vh;
+                padding-top: 80px;  /* Header payı */
+                padding-bottom: 60px; /* Footer payı */
+                display: flex;
+                align-items: center; 
+                justify-content: center;
+                overflow: hidden; /* Sadece kutu kaysın, sayfa değil */
+            }
+
+            /* 4. İçerik Kutusu (Yazı uzunsa bu kutu kayar) */
+            .glass-box {
+                max-height: 70vh; /* Ekranın %70'i kadar */
+                overflow-y: auto; /* İç scroll aktif */
+                padding: 20px;
+                margin: 0 15px;
+            }
+
+            /* 5. Ana Sayfa Mobilde */
+            #home-page {
+                flex-direction: column-reverse;
+                text-align: center;
+                justify-content: center;
+                gap: 20px;
+                height: 100%;
+            }
+            
+            .hero-logo { margin: 0 auto 10px auto; max-width: 180px; }
+            .hero-title { font-size: 2rem; margin-bottom: 10px; }
+            .hero-img-container { justify-content: center; flex: 0 0 auto; }
+            .hero-img { max-width: 250px; } /* Mobilde asa boyutu */
+            .hero-info { border-left: none; align-items: center; font-size: 1rem; }
+            .hashtag { margin-top: 20px; font-size: 1rem; }
+
+            /* 6. Footer Mobilde Sabit */
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background: rgba(2, 11, 22, 0.95);
+                padding: 15px;
+                z-index: 100;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fixed-background"></div>
+
+    <header>
+        <div class="logo-container" onclick="showPage('home-page')">
+            <img src="logo.svg" alt="Logo">
+        </div>
+        
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+
+        <nav>
+            <ul id="nav-list">
+                <li><a onclick="showPage('home-page')">Ana Sayfa</a></li>
+                <li><a onclick="showPage('davet-page')">Davet</a></li>
+                <li><a onclick="showPage('kurullar-page')">Kurullar</a></li>
+                <li><a onclick="showPage('bilimsel-page')">Bilimsel Program</a></li>
+                <li><a onclick="showPage('kayit-page')">Kayıt & Konaklama</a></li>
+                <li><a onclick="showPage('konusmacilar-page')">Konuşmacılar</a></li>
+                <li><a onclick="showPage('sponsorlar-page')">Sponsorlar</a></li>
+                <li><a onclick="showPage('genel-page')">Genel Bilgiler</a></li>
+                <li><a onclick="showPage('iletisim-page')">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        <div id="home-page" class="content-page active">
+            <div class="hero-text">
+                <img src="logo.svg" alt="IVSA Konya Logo" class="hero-logo">
+                <h1 class="hero-title">IVSA KONYA II. VETERİNER KLİNİK<br>BİLİMLERİ KOLOKYUMU</h1>
+                <div class="hero-info">
+                    <span><i class="far fa-calendar-alt" style="color:var(--accent-gold); margin-right:10px;"></i> 18-19 NİSAN 2026</span>
+                    <span><i class="fas fa-map-marker-alt" style="color:var(--accent-gold); margin-right:10px;"></i> SELÇUK ÜNİVERSİTESİ</span>
+                </div>
+                <div class="hashtag">#HerDaimİleri</div>
+            </div>
+            <div class="hero-img-container">
+                <img src="asa.png" class="hero-img" alt="Sembol">
+            </div>
+        </div>
+
+        <div id="davet-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">Davet Mektubu</h2>
+                <p style="line-height: 1.8; color: #ddd;">
+                    Değerli Meslektaşlarımız,<br><br>
+                    Igkjghjlhjgjhjhlhkllugıgyhıl.<br><br>
+                </p>
+            </div>
+        </div>
+
+        <div id="kurullar-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">Kurullar</h2>
+                <div class="grid-layout">
+                    <div class="card">
+                        <h3 style="color:var(--accent-blue)">Düzenleme Kurulu</h3>
+                        <ul style="margin-top:10px; list-style:none; color:#ccc;">
+                            <li>• İsim Soyisim (Başkan)</li>
+                            <li>• İsim Soyisim</li>
+                            <li>• İsim Soyisim</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 style="color:var(--accent-blue)">Bilim Kurulu</h3>
+                        <p style="margin-top:10px; color:#ccc;">Akademik kadro listesi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bilimsel-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">Bilimsel Program</h2>
+                <p style="color:#ddd;">Oturum detayları.</p>
+            </div>
+        </div>
+
+        <div id="kayit-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">Kayıt ve Konaklama</h2>
+                <div class="grid-layout">
+                    <div class="card" style="text-align:center;">
+                        <i class="fas fa-graduation-cap" style="font-size:2rem; color:var(--accent-gold); margin-bottom:15px;"></i>
+                        <h3>Öğrenci</h3>
+                        <p style="font-size:1.5rem; font-weight:bold; margin-top:10px;">500 TL</p>
+                    </div>
+                    <div class="card" style="text-align:center;">
+                        <i class="fas fa-user-md" style="font-size:2rem; color:var(--accent-gold); margin-bottom:15px;"></i>
+                        <h3>Hekim</h3>
+                        <p style="font-size:1.5rem; font-weight:bold; margin-top:10px;">1000 TL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="konusmacilar-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">Konuşmacılar</h2>
+                <p style="color:#ddd;">Yakında.</p>
+            </div>
+        </div>
+
+        <div id="sponsorlar-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">Sponsorlar</h2>
+                <div class="grid-layout">
+                    <div class="card" style="display:flex; align-items:center; justify-content:center; height:100px;">LOGO 1</div>
+                    <div class="card" style="display:flex; align-items:center; justify-content:center; height:100px;">LOGO 2</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="genel-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">Genel Bilgiler</h2>
+                <ul style="margin-left:20px; color:#ddd; line-height:2;">
+                    <li>Kjlhlkhjljl</li>
+                    <li>Kjnjknlk</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="iletisim-page" class="content-page">
+            <div class="glass-box">
+                <h2 class="page-title">İletişim</h2>
+                <div class="grid-layout">
+                    <div>
+                        <p><i class="fas fa-envelope" style="color:var(--accent-blue)"></i> info@ivsakonya.org</p>
+                        <p style="margin-top:10px;"><i class="fab fa-instagram" style="color:var(--accent-blue)"></i> @ivsakonya</p>
+                    </div>
+                    <div style="background:#000; height:150px; display:flex; align-items:center; justify-content:center; border-radius:10px; color:#555;">
+                        HARİTA
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>© 2026 smtl.</footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.content-page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('nav-list').classList.remove('show');
+            
+            // Sayfa değişince içeriği en üste sar (Kutu scroll'u için)
+            const activeBox = document.querySelector('.content-page.active .glass-box');
+            if(activeBox) activeBox.scrollTop = 0;
+            
+            window.scrollTo(0,0);
+        }
+        function toggleMenu() {
+            document.getElementById('nav-list').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
