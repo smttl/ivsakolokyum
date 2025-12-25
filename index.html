@@ -232,12 +232,6 @@
 
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         
-        /* GENEL BİLGİLER LİSTESİ */
-        .info-list { list-style: none; padding: 0; color: #ddd; font-size: 1rem; line-height: 1.7; text-align: left; }
-        .info-list li { margin-bottom: 15px; }
-        .info-list strong { color: var(--accent-blue); margin-right: 5px; }
-        .info-title-sub { color: #fff; font-size: 1.2rem; margin-top: 25px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
-
         footer { text-align: center; padding: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5); background: transparent; border-top: none; position: relative; z-index: 10; margin-top: auto; }
 
         /* ========================================= */
@@ -444,34 +438,43 @@
                     <div class="glass-box">
                         <h2 class="page-title">Genel Bilgiler</h2>
                         
-                        <ul class="info-list">
-                            <li><strong><i class="far fa-calendar-alt"></i> Tarih:</strong> 18-19 Nisan 2026</li>
-                            <li><strong><i class="fas fa-map-marker-alt"></i> Merkez:</strong> Selçuk Üniversitesi Küçük Hayvan Hastanesi, Mehmet Akif Ersoy Konferans Salonu</li>
-                        </ul>
+                        <div style="text-align: left; color: #ddd; line-height: 1.6;">
+                
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Kolokyum Tarihi:</h3>
+                            <p>Etkinlik 18-19 Nisan 2026 tarihlerinde gerçekleştirilecektir.</p>
 
-                        <h3 class="info-title-sub">Kongre Hakkında</h3>
-                        <p style="text-align: left; color:#ddd; margin-bottom:15px; line-height: 1.6;">
-                            II. Ulusal IVSA Konya Klinik Bilimleri Kolokyumu, veteriner hekimlik öğrencileri ve profesyonelleri bir araya getiren büyük çapta bir organizasyondur. Amacımız, klinik bilimler alanındaki en güncel bilgileri paylaşmak, sektördeki yeniliklere dikkat çekmek ve mesleki gelişime katkı sağlamaktır.
-                        </p>
-                        <ul class="info-list">
-                            <li><strong>Ana Konular:</strong> Cerrahi, İç Hastalıkları, Doğum ve Jinekoloji</li>
-                            <li><strong>Stant Alanları:</strong> 18-19 Nisan (09.00 - 16.30) - Küçük Hayvan Hastanesi</li>
-                            <li><strong>Davet Mektubu:</strong> Kurum/firma izinleri için talep üzerine gönderilir.</li>
-                            <li><strong>Yaka Kartı:</strong> Bilimsel program ve ikramlara erişim için zorunludur.</li>
-                            <li><strong>Katılım Belgesi:</strong> Gala gecesinde tüm katılımcılara verilecektir.</li>
-                            <li><strong>Instagram:</strong> <a href="https://instagram.com/ivsakonyakongre" target="_blank" style="color:var(--accent-blue); text-decoration:none;">@ivsakonyakongre</a></li>
-                        </ul>
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Kolokyum Merkezi:</h3>
+                            <p>Selçuk Üniversitesi Küçük Hayvan Hastanesi Mehmet Akif Ersoy Konferans Salonu</p>
 
-                        <h3 class="info-title-sub">Ulaşım & Konaklama</h3>
-                        <div style="text-align: left; color:#ddd;">
-                            <p style="margin-bottom: 15px;">
-                                <strong style="color: var(--accent-blue);"><i class="fas fa-bus"></i> Otobüs ile:</strong> 
-                                Otogardan kampüs tramvayına binip <em>"Mühendislik Fakültesi"</em> durağında inerek Veteriner Fakültesi tabelalarını takip ediniz. Konuk Evi için <em>"Kampüs Giriş"</em> durağında inilmelidir.
-                            </p>
-                            <p>
-                                <strong style="color: var(--accent-blue);"><i class="fas fa-train"></i> Hızlı Tren (YHT) ile:</strong> 
-                                YHT Garı'ndan <em>"Kunduracılar"</em> durağına yürüyüp kampüs tramvayına bininiz. <em>"Mühendislik Fakültesi"</em> durağında ininiz.
-                            </p>
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Kongre Hakkında:</h3>
+                            <p>II. Ulusal IVSA Konya Klinik Bilimleri Kolokyumu, veteriner hekimlik öğrencileri ve profesyonelleri bir araya getiren büyük çapta bir organizasyondur. Amacımız, klinik bilimler alanındaki en güncel bilgileri paylaşmak, sektördeki yeniliklere dikkat çekmek ve mesleki gelişime katkı sağlamaktır.</p>
+                            <p>Kolokyumda ele alınacak ana konular klinik bilimler olup cerrahi, iç hastalıkları, doğum ve jinekoloji alanları olacaktır.</p>
+
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Stant Alanları:</h3>
+                            <p>Sponsorlarımızın stantlarını ziyaret etmek için 18-19 Nisan tarihlerinde 09.00 ile 16.30 saatleri arasında Küçük Hayvan Hastanesi içerisinde katılımcılar için açılacaktır.</p>
+
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Davet Mektubu:</h3>
+                            <p>Kolokyuma katılmak için çalıştığı firmadan/kurumdan izin almaları gereken kişilere davet mektubu tarafımızca gönderilecektir.</p>
+
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Yaka Kartı:</h3>
+                            <p>Katılımcıların kolokyum sürecindeki bilimsel programlara, stant alanlarına ve ikramlardan yararlanabilmesi için kayıt masasında yaka kartları verilecektir.</p>
+
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Kolokyum Katılım Belgesi:</h3>
+                            <p>Kolokyum kayıt belgeleri, kayıt yaptıran tüm katılımcılara kolokyum bitiminde gala gecesi sırasında verilecektir.</p>
+
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:20px;">Kolokyum Instagram Hesabı:</h3>
+                            <p>Kolokyumla ilgili hızlı gelişen detayları ve süreci <a href="https://instagram.com/ivsakonyakongre" target="_blank" style="color:var(--accent-blue); text-decoration: underline;">@ivsakonyakongre</a> Instagram hesabından takip edebilirsiniz.</p>
+
+                            <h3 style="color:var(--accent-blue); font-size:1.2rem; margin-top:30px; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:10px;">Kolokyum Merkezine ve Konaklama Oteline Nasıl Gidilir?</h3>
+
+                            <h4 style="color:#fff; font-size:1.1rem; margin-top:15px; font-weight:bold;">Otobüs ile gelmek isteyen katılımcılar:</h4>
+                            <p>Otogardan çıktıktan sonra kampüs istikametinde giden tramvaya binip kampüs içerisindeki “Mühendislik Fakültesi” durağında inmelisiniz. Veteriner Fakültesi levhasını takip ederek yolun sonunda hastanemize ulaşabilirsiniz.</p>
+                            <p>Konaklama alanı için “Kampüs Giriş” durağında inip, 6-7 dakikalık bir yürüyüşle Selçuk Üniversitesi Konuk Evi'ne ulaşabilirsiniz.</p>
+
+                            <h4 style="color:#fff; font-size:1.1rem; margin-top:15px; font-weight:bold;">Hızlı tren ile gelmek isteyen katılımcılar:</h4>
+                            <p>Selçuklu YHT Garı’nda indikten sonra 8 dakikalık bir yürüyüşle “Kunduracılar” tramvay durağından kampüs istikametinde giden tramvaya binip kampüs içerisindeki “Mühendislik Fakültesi” durağında inmelisiniz. Veteriner Fakültesi levhasını takip ederek yolun sonunda hastanemize ulaşabilirsiniz.</p>
+                            <p>Konaklama alanı için “Kampüs Giriş” durağında inip, 6-7 dakikalık bir yürüyüşle Selçuk Üniversitesi Konuk Evi'ne ulaşabilirsiniz.</p>
+
                         </div>
                     </div>
                 </div>
