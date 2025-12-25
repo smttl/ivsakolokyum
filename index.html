@@ -14,7 +14,7 @@
     <title>IVSA KONYA - II. Veteriner Klinik Bilimleri Kolokyumu</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- AYARLAR --- */
@@ -23,20 +23,28 @@
             --accent-blue: #33adff; 
             --accent-gold: #d4af37;
             --text-white: #ffffff;
-            --text-gray: #cfd8dc;
-            --font-main: 'Montserrat', sans-serif;
+            --text-gray: #e0e0e0; /* Okunabilirlik için biraz açıldı */
+            
+            /* YENİ FONT DEĞİŞKENLERİ */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-main);
+            font-family: var(--font-body); /* Genel yazı fontu değiştirildi */
             color: var(--text-white);
             background-color: var(--bg-dark);
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        /* Başlıkların fontunu özel olarak ayarla */
+        h1, h2, h3, h4, nav, .hero-title-main, .hashtag, .davet-name, .davet-title {
+            font-family: var(--font-heading);
         }
 
         /* --- ARKA PLAN --- */
@@ -58,11 +66,9 @@
             z-index: -1;
         }
 
-        /* --- HEADER (DÜZENLENDİ: SOLA YASLAMA) --- */
+        /* --- HEADER --- */
         header {
-            /* Padding 30px yapılarak logo sola yaklaştırıldı */
             padding: 20px 30px;
-            
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -76,9 +82,9 @@
             z-index: 1000;
         }
 
-        /* LOGO AYARLARI (BÜYÜTME) */
+        /* LOGO AYARLARI */
         .logo-container img { 
-            height: 85px; /* Logo boyutu büyütüldü */
+            height: 85px; 
             width: auto;
             cursor: pointer; 
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); 
@@ -166,7 +172,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Header büyüdüğü için padding-top arttırıldı */
             padding: 120px 5% 40px 5%;
         }
 
@@ -215,7 +220,6 @@
 
         .hero-text { flex: 1; min-width: 300px; padding-right: 20px; }
         
-        /* Hero içindeki logo ayarı */
         .hero-top-logo { 
             width: 150px; 
             margin-bottom: 20px; 
@@ -250,7 +254,6 @@
         
         .hero-img-container { flex: 1; display: flex; justify-content: flex-end; min-width: 300px; position: relative; }
         
-        /* ÇERÇEVESİZ GÖRSEL */
         .hero-img { 
             max-width: 550px; 
             width: 100%; 
@@ -263,7 +266,7 @@
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
         
-        /* FOOTER (ŞEFFAF) */
+        /* FOOTER */
         footer { text-align: center; padding: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5); background: transparent; border-top: none; position: relative; z-index: 10; }
 
         /* MOBİL DÜZENLEMELER */
@@ -278,7 +281,6 @@
                 border: 1px solid rgba(255,255,255,0.2);
             }
 
-            /* Mobilde logo boyutu */
             .logo-container img { height: 60px; }
 
             nav ul {
@@ -303,78 +305,86 @@
             .hero-img { max-width: 280px; } 
             footer { position: relative; width: 100%; padding-bottom: 30px; }
         }
-/* --- DAVET SAYFASI ÖZEL TASARIMI --- */
-.davet-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Yan yana iki eşit kutu */
-    gap: 40px;
-    margin-top: 20px;
-}
 
-.davet-card {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        /* --- DAVET SAYFASI ÖZEL TASARIMI --- */
+        .davet-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Yan yana iki eşit kutu */
+            gap: 40px;
+            margin-top: 20px;
+        }
 
-.davet-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border-color: var(--accent-blue);
-}
+        .davet-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.img-wrapper {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 20px auto;
-    border-radius: 50%;
-    padding: 5px;
-    border: 2px solid var(--accent-blue); /* Mavi çerçeve */
-    background: rgba(255,255,255,0.05);
-}
+        .davet-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: var(--accent-blue);
+        }
 
-.img-wrapper img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover; /* Resmi bozmadan yuvarlağın içine sığdırır */
-}
+        .img-wrapper {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            padding: 5px;
+            border: 2px solid var(--accent-blue);
+            background: rgba(255,255,255,0.05);
+        }
 
-.davet-name {
-    color: var(--accent-blue);
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover; 
+        }
 
-.davet-title {
-    display: block;
-    font-size: 0.9rem;
-    color: #aaa;
-    margin-bottom: 20px;
-    font-style: italic;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
+        .davet-name {
+            color: var(--accent-blue);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
 
-.davet-text {
-    text-align: justify; /* Yazıyı iki yana yaslar */
-    color: #ddd;
-    font-size: 1rem;
-    line-height: 1.6;
-}
+        .davet-title {
+            display: block;
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            font-style: italic;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-/* Mobilde alt alta olsun */
-@media (max-width: 768px) {
-    .davet-container {
-        grid-template-columns: 1fr;
-    }
-}
-      
+        .davet-text {
+            text-align: justify;
+            color: #ddd;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* PARAGRAF AYARLARI */
+        .davet-text p {
+            margin-bottom: 15px; /* Paragraflar arası boşluk */
+        }
+        .davet-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobilde alt alta olsun */
+        @media (max-width: 768px) {
+            .davet-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -421,58 +431,58 @@
         </div>
 
         <div id="davet-page" class="content-page">
-    <div class="glass-box">
-        <h2 class="page-title">Davet Mektupları</h2>
-        
-        <div class="davet-container">
-            
-            <div class="davet-card">
-                <div class="img-wrapper">
-                    <img src="h.jpeg" alt="Danışman Hoca">
-                </div>
-                <h3 class="davet-name">Arş. Gör. Dr. M. Hüdai ÇULHA</h3>
-                <span class="davet-title">IVSA Konya Akademik Danışmanı</span>
-                <p class="davet-text">
-                     Kıymetli Öğrenciler,<br><br>
-                   
-Veteriner hekimlik eğitimi, yalnızca teorik bilginin aktarılmasıyla değil; öğrencilerin bilimsel düşünme becerilerini geliştiren, farklı klinik disiplinleri bir arada değerlendirmelerini sağlayan akademik ortamlarla güçlenmektedir. Bu bakış açısıyla planlanan II. Ulusal Veteriner Klinik Bilimleri Kolokyumu, 18–19 Nisan 2026 tarihlerinde IVSA Konya’nın öğrenci merkezli yaklaşımıyla gerçekleştirilecektir.
-2025 yılında düzenlenen ilk kolokyum, yüksek katılımlı yapısı ve disiplinler arası içeriğiyle dikkat çekmiş; farklı üniversitelerden gelen öğrencilerin aktif katılım sağladığı nitelikli bir bilimsel platform oluşturmuştur. Etkinlik sürecinde Romanya ve Portekiz’den gelen katılımcılarla uluslararası düzeyde akademik etkileşim sağlanmış, ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle organizasyonun bilimsel altyapısı güçlendirilmiştir.
-Bu yıl düzenlenecek kolokyumda;
-İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel klinik yaklaşımlar ele alınacak, öğrencilerin klinik karar verme süreçlerine katkı sağlayacak bilgi ve deneyimlerin paylaşılması amaçlanacaktır. Program içeriği, veteriner fakültesi öğrencilerinin mesleki gelişim süreçlerine doğrudan katkı sunacak şekilde yapılandırılmıştır.
-Öğrencilerin erken dönemde bilimsel etkinliklerle buluşmasının, mesleki vizyonlarını şekillendirmede önemli bir rol oynadığına inanıyor; veteriner klinik bilimlerine ilgi duyan tüm öğrencileri bu akademik paylaşım ortamının bir parçası olmaya davet ediyorum.
-
-Saygılarımla,
-Arş. Gör. Dr. M. Hüdai ÇULHA
-IVSA Konya Akademik Danışman
-                </p>
-            </div>
-
-            <div class="davet-card">
-                <div class="img-wrapper">
-                    <img src="m.jpeg" alt="Kulüp Başkanı">
-                </div>
-                <h3 class="davet-name">Mehmet KAVAKLI</h3>
-                <span class="davet-title">IVSA Konya Başkanı</span>
-                <p class="davet-text">
-                    Değerli Öğrenci Arkadaşlarım,<br><br>
+            <div class="glass-box">
+                <h2 class="page-title">Davet Mektupları</h2>
+                
+                <div class="davet-container">
                     
-IVSA Konya olarak, veteriner hekim adaylarının klinik bilimler alanında güncel bilgiye erişimini desteklemeyi, öğrenci temelli bilimsel etkinlikleri güçlendirmeyi ve ulusal–uluslararası etkileşimi artırmayı temel bir sorumluluk olarak görüyoruz. Bu anlayışla, 18–19 Nisan 2026 tarihlerinde düzenleyeceğimiz II. Ulusal Veteriner Klinik Bilimleri Kolokyumu’na sizleri davet etmekten büyük mutluluk duyuyorum.
+                    <div class="davet-card">
+                        <div class="img-wrapper">
+                            <img src="h.jpeg" alt="Danışman Hoca">
+                        </div>
+                        <h3 class="davet-name">Arş. Gör. Dr. M. Hüdai ÇULHA</h3>
+                        <span class="davet-title">IVSA Konya Akademik Danışmanı</span>
+                        
+                        <div class="davet-text">
+                            <p>Kıymetli Öğrenciler,</p>
+                            
+                            <p>Veteriner hekimlik eğitimi, yalnızca teorik bilginin aktarılmasıyla değil; öğrencilerin bilimsel düşünme becerilerini geliştiren, farklı klinik disiplinleri bir arada değerlendirmelerini sağlayan akademik ortamlarla güçlenmektedir. Bu bakış açısıyla planlanan II. Ulusal Veteriner Klinik Bilimleri Kolokyumu, 18–19 Nisan 2026 tarihlerinde IVSA Konya’nın öğrenci merkezli yaklaşımıyla gerçekleştirilecektir.</p>
+                            
+                            <p>2025 yılında düzenlenen ilk kolokyum, yüksek katılımlı yapısı ve disiplinler arası içeriğiyle dikkat çekmiş; farklı üniversitelerden gelen öğrencilerin aktif katılım sağladığı nitelikli bir bilimsel platform oluşturmuştur. Etkinlik sürecinde Romanya ve Portekiz’den gelen katılımcılarla uluslararası düzeyde akademik etkileşim sağlanmış, ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle organizasyonun bilimsel altyapısı güçlendirilmiştir.</p>
+                            
+                            <p>Bu yıl düzenlenecek kolokyumda; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel klinik yaklaşımlar ele alınacak, öğrencilerin klinik karar verme süreçlerine katkı sağlayacak bilgi ve deneyimlerin paylaşılması amaçlanacaktır. Program içeriği, veteriner fakültesi öğrencilerinin mesleki gelişim süreçlerine doğrudan katkı sunacak şekilde yapılandırılmıştır.</p>
+                            
+                            <p>Öğrencilerin erken dönemde bilimsel etkinliklerle buluşmasının, mesleki vizyonlarını şekillendirmede önemli bir rol oynadığına inanıyor; veteriner klinik bilimlerine ilgi duyan tüm öğrencileri bu akademik paylaşım ortamının bir parçası olmaya davet ediyorum.</p>
+                            
+                            <p>Saygılarımla,<br>Arş. Gör. Dr. M. Hüdai ÇULHA</p>
+                        </div>
+                    </div>
 
-Birincisini 7–9 Mayıs 2025 tarihlerinde gerçekleştirdiğimiz kolokyumumuz, 350’nin üzerinde katılımcı ile önemli bir başarıya ulaşmış; bu katılımın 150’den fazlasını farklı üniversitelerden gelen veteriner fakültesi öğrencileri oluşturmuştur. Ayrıca ilk kolokyumumuzda Romanya ve Portekiz’den misafir öğrenci ve temsilcileri ağırlayarak etkinliğimize uluslararası bir boyut kazandırdık.
+                    <div class="davet-card">
+                        <div class="img-wrapper">
+                            <img src="m.jpeg" alt="Kulüp Başkanı">
+                        </div>
+                        <h3 class="davet-name">Mehmet KAVAKLI</h3>
+                        <span class="davet-title">IVSA Konya Başkanı</span>
+                        
+                        <div class="davet-text">
+                            <p>Değerli Öğrenci Arkadaşlarım,</p>
+                            
+                            <p>IVSA Konya olarak, veteriner hekim adaylarının klinik bilimler alanında güncel bilgiye erişimini desteklemeyi, öğrenci temelli bilimsel etkinlikleri güçlendirmeyi ve ulusal–uluslararası etkileşimi artırmayı temel bir sorumluluk olarak görüyoruz. Bu anlayışla, 18–19 Nisan 2026 tarihlerinde düzenleyeceğimiz II. Ulusal Veteriner Klinik Bilimleri Kolokyumu’na sizleri davet etmekten büyük mutluluk duyuyorum.</p>
+                            
+                            <p>Birincisini 7–9 Mayıs 2025 tarihlerinde gerçekleştirdiğimiz kolokyumumuz, 350’nin üzerinde katılımcı ile önemli bir başarıya ulaşmış; bu katılımın 150’den fazlasını farklı üniversitelerden gelen veteriner fakültesi öğrencileri oluşturmuştur. Ayrıca ilk kolokyumumuzda Romanya ve Portekiz’den misafir öğrenci ve temsilcileri ağırlayarak etkinliğimize uluslararası bir boyut kazandırdık.</p>
+                            
+                            <p>Bunun yanı sıra, ilk kolokyumumuz ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle gerçekleştirilmiş; bu destekler, etkinliğimizin akademik niteliğini ve kurumsal güvenilirliğini daha da güçlendirmiştir.</p>
+                            
+                            <p>II. Ulusal Veteriner Klinik Bilimleri Kolokyumu kapsamında; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel veteriner klinik bilgileri ele alınacak, öğrencilerin klinik dersler ve saha uygulamalarına daha donanımlı şekilde hazırlanması hedeflenecektir. Programımız; teorik bilginin klinik pratikle buluştuğu, etkileşimin ve öğrenci katılımının ön planda olduğu bir içerikle planlanmıştır.</p>
+                            
+                            <p>Türkiye’nin ve farklı ülkelerin veteriner fakültelerinden öğrencileri; bilimsel paylaşımla güçlenen, mesleki vizyon kazandıran ve öğrenci dayanışmasını artıran bu kolokyumda aramızda görmekten onur duyarız.</p>
+                        </div>
+                    </div>
 
-Bunun yanı sıra, ilk kolokyumumuz ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle gerçekleştirilmiş; bu destekler, etkinliğimizin akademik niteliğini ve kurumsal güvenilirliğini daha da güçlendirmiştir.
-
-II. Ulusal Veteriner Klinik Bilimleri Kolokyumu kapsamında;
-İç Hastalıkları, CerrahiDoğum ve Jinekoloji alanlarında güncel veteriner klinik bilgileri ele alınacak, öğrencilerin klinik dersler ve saha uygulamalarına daha donanımlı şekilde hazırlanması hedeflenecektir. Programımız; teorik bilginin klinik pratikle buluştuğu, etkileşimin ve öğrenci katılımının ön planda olduğu bir içerikle planlanmıştır.
-
-Türkiye’nin ve farklı ülkelerin veteriner fakültelerinden öğrencileri; bilimsel paylaşımla güçlenen, mesleki vizyon kazandıran ve öğrenci dayanışmasını artıran bu kolokyumda aramızda görmekten onur duyarız.
-
-                </p>
+                </div>
             </div>
-
         </div>
-    </div>
-</div>
 
         <div id="kurullar-page" class="content-page">
             <div class="glass-box">
