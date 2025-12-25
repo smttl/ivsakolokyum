@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6RRX05KBN"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6RRX05KBN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-P6RRX05KBN');
     </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IVSA KONYA - II. Veteriner Klinik Bilimleri Kolokyumu</title>
@@ -19,7 +20,7 @@
         /* --- AYARLAR --- */
         :root {
             --bg-dark: #000d1a;
-            --accent-blue: #33adff; /* Modern Mavi Tema */
+            --accent-blue: #33adff; 
             --accent-gold: #d4af37;
             --text-white: #ffffff;
             --text-gray: #cfd8dc;
@@ -53,14 +54,15 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Arka plan karartması */
             background: radial-gradient(circle at center, rgba(0, 50, 100, 0.3) 0%, rgba(0, 5, 10, 0.9) 100%);
             z-index: -1;
         }
 
-        /* --- HEADER (ŞEFFAF) --- */
+        /* --- HEADER (DÜZENLENDİ: SOLA YASLAMA) --- */
         header {
-            padding: 20px 5%;
+            /* Padding 30px yapılarak logo sola yaklaştırıldı */
+            padding: 20px 30px;
+            
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -74,19 +76,18 @@
             z-index: 1000;
         }
 
-        /* Yeni Kod */
-.logo-container img {
-    height: 90px; /* Burayı 55px'ten 90px'e çıkardık. İsteğe göre 120px vs. yapabilirsin */
-    width: auto;  /* Genişliğin orantılı artmasını sağlar */
-    cursor: pointer;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-    transition: transform 0.3s ease; /* Ufak bir hover efekti için hazırlık */
-}
-
-/* İstersen üzerine gelince hafif büyüme efekti de ekleyebiliriz */
-.logo-container img:hover {
-    transform: scale(1.1);
-}
+        /* LOGO AYARLARI (BÜYÜTME) */
+        .logo-container img { 
+            height: 85px; /* Logo boyutu büyütüldü */
+            width: auto;
+            cursor: pointer; 
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); 
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container img:hover {
+            transform: scale(1.15);
+        }
 
         nav ul {
             display: flex;
@@ -165,7 +166,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 5% 40px 5%;
+            /* Header büyüdüğü için padding-top arttırıldı */
+            padding: 120px 5% 40px 5%;
         }
 
         .content-page {
@@ -212,7 +214,14 @@
         #home-page.active { display: flex; }
 
         .hero-text { flex: 1; min-width: 300px; padding-right: 20px; }
-        .hero-top-logo { width: 150px; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(255,255,255,0.3)); display: block; }
+        
+        /* Hero içindeki logo ayarı */
+        .hero-top-logo { 
+            width: 150px; 
+            margin-bottom: 20px; 
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.3)); 
+            display: block; 
+        }
         
         .hero-title-main { 
             font-size: 3.5rem; 
@@ -240,13 +249,12 @@
         .hashtag { margin-top: 40px; font-size: 1.5rem; color: rgba(255,255,255,0.8); font-weight: 300; letter-spacing: 1px; }
         
         .hero-img-container { flex: 1; display: flex; justify-content: flex-end; min-width: 300px; position: relative; }
-
-        /* --- HERO RESMİ DÜZENLEMESİ --- */
-        /* border-radius ve border kaldırıldı */
+        
+        /* ÇERÇEVESİZ GÖRSEL */
         .hero-img { 
             max-width: 550px; 
             width: 100%; 
-            filter: drop-shadow(0 0 30px rgba(51, 173, 255, 0.3)); /* Mavi parlama efekti */
+            filter: drop-shadow(0 0 30px rgba(51, 173, 255, 0.4)); 
             animation: float 6s ease-in-out infinite; 
         }
         @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
@@ -269,6 +277,9 @@
                 width: 45px; height: 45px; line-height: 45px; text-align: center; border-radius: 5px;
                 border: 1px solid rgba(255,255,255,0.2);
             }
+
+            /* Mobilde logo boyutu */
+            .logo-container img { height: 60px; }
 
             nav ul {
                 display: none; 
@@ -425,7 +436,7 @@
 
     </main>
 
-    <footer>© 2026 smtl.</footer>
+    <footer>2026|smtl.</footer>
 
     <script>
         function showPage(pageId) {
