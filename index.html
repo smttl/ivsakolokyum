@@ -30,6 +30,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: var(--font-body);
             color: var(--text-white);
@@ -54,7 +56,6 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-        
         .fixed-background::after {
             content: '';
             position: absolute;
@@ -86,7 +87,6 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); 
             transition: transform 0.3s ease;
         }
-        
         .logo-container img:hover { transform: scale(1.15); }
 
         nav ul {
@@ -138,10 +138,8 @@
             min-height: 250px;
             text-align: center;
         }
-
         .spinner {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             border: 5px solid rgba(255, 255, 255, 0.1);
             border-top: 5px solid var(--accent-blue);
             border-radius: 50%;
@@ -149,30 +147,19 @@
             margin-bottom: 20px;
             box-shadow: 0 0 15px rgba(51, 173, 255, 0.2);
         }
-
-        .loading-text {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            letter-spacing: 1px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
+        .loading-text { font-size: 1.1rem; color: var(--text-gray); letter-spacing: 1px; animation: pulse 1.5s ease-in-out infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
         /* --- MAIN --- */
         main {
-flex: 1;
-    display: flex;
-    flex-direction: column; /* İçerikleri alt alta diz */
-    align-items: center;    /* Yatayda ortala */
-    justify-content: flex-start; /* DİKEYDE ORTALAMA YERİNE ÜSTTEN BAŞLAT */
-    
-    /* Header (Menü) yüksekliği kadar yukarıdan boşluk bırakıyoruz */
-    /* Menü ~125px yer kaplıyor, biz 140px verelim ki yapışmasın */
-    padding: 140px 5% 40px 5%; 
-    
-    min-height: 100vh; /* Ekranı doldur */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* İçerik yukarıdan başlasın */
+            padding: 140px 5% 40px 5%;
+            width: 100%;
         }
 
         .content-page {
@@ -208,12 +195,12 @@ flex: 1;
             text-shadow: 0 0 15px rgba(51, 173, 255, 0.3);
         }
 
-        /* --- HERO --- */
+        /* --- HERO (ANA SAYFA - DÜZENLENDİ) --- */
         #home-page {
             display: flex;
+            flex-direction: row; /* MASAÜSTÜ: YAN YANA */
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
             width: 100%;
         }
         #home-page.active { display: flex; }
@@ -234,19 +221,29 @@ flex: 1;
         
         footer { text-align: center; padding: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5); background: transparent; border-top: none; position: relative; z-index: 10; }
 
-        /* MOBİL */
+        /* --- MOBİL UYUMLULUK --- */
         @media (max-width: 1024px) {
             html, body { overflow: auto; position: static; height: auto; }
             .fixed-background { background-attachment: fixed; }
             .menu-toggle { display: block; position: fixed; top: 25px; right: 25px; z-index: 10002; background: rgba(0, 13, 26, 0.8); backdrop-filter: blur(5px); width: 45px; height: 45px; line-height: 45px; text-align: center; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); }
             .logo-container img { height: 60px; }
+            
             nav ul { display: none; flex-direction: column !important; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 8, 15, 0.98); justify-content: center; align-items: center; gap: 30px; z-index: 9999; }
             nav ul.show { display: flex !important; }
             nav ul li a { font-size: 1.3rem; }
+            
             main { display: block; height: auto; padding-top: 100px; padding-bottom: 40px; }
             .glass-box { max-height: none; overflow: visible; height: auto; margin-bottom: 30px; padding: 25px; }
             .grid-layout { grid-template-columns: 1fr; }
-            #home-page { flex-direction: column-reverse; text-align: center; gap: 40px; margin-top: 20px; }
+            
+            /* MOBİLDE ANA SAYFA DÜZENİ */
+            #home-page { 
+                flex-direction: column-reverse; /* MOBİL: AŞAĞIDAN YUKARI (Resim Üstte, Yazı Altta) */
+                text-align: center; 
+                gap: 40px; 
+                margin-top: 20px; 
+            }
+            
             .hero-top-logo { margin: 0 auto 10px auto; }
             .hero-title-main { font-size: 2.2rem; }
             .hero-info { border-left: none; padding-left: 0; align-items: center; }
@@ -308,16 +305,8 @@ flex: 1;
             text-transform: uppercase;
         }
 
-        /* METİN DÜZENLEMELERİ (BOŞLUK SORUNU ÇÖZÜLDÜ) */
-        .davet-text {
-            text-align: left; /* Justify yerine Left yapıldı */
-            color: #ddd;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        .davet-text p {
-            margin-bottom: 12px; /* Paragraf arası boşluk dengelendi */
-        }
+        .davet-text { text-align: left; color: #ddd; font-size: 1rem; line-height: 1.6; }
+        .davet-text p { margin-bottom: 12px; }
         .davet-text p:last-child { margin-bottom: 0; }
 
         @media (max-width: 768px) {
@@ -370,7 +359,7 @@ flex: 1;
 
         <div id="davet-page" class="content-page">
             <div class="glass-box">
-                <h2 class="page-title">Davet Mektupları</h2>
+               
                 
                 <div class="davet-container">
                     
@@ -387,7 +376,7 @@ flex: 1;
                             <p>2025 yılında düzenlenen ilk kolokyum, yüksek katılımlı yapısı ve disiplinler arası içeriğiyle dikkat çekmiş; farklı üniversitelerden gelen öğrencilerin aktif katılım sağladığı nitelikli bir bilimsel platform oluşturmuştur. Etkinlik sürecinde Romanya ve Portekiz’den gelen katılımcılarla uluslararası düzeyde akademik etkileşim sağlanmış, ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle organizasyonun bilimsel altyapısı güçlendirilmiştir.</p>
                             <p>Bu yıl düzenlenecek kolokyumda; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel klinik yaklaşımlar ele alınacak, öğrencilerin klinik karar verme süreçlerine katkı sağlayacak bilgi ve deneyimlerin paylaşılması amaçlanacaktır. Program içeriği, veteriner fakültesi öğrencilerinin mesleki gelişim süreçlerine doğrudan katkı sunacak şekilde yapılandırılmıştır.</p>
                             <p>Öğrencilerin erken dönemde bilimsel etkinliklerle buluşmasının, mesleki vizyonlarını şekillendirmede önemli bir rol oynadığına inanıyor; veteriner klinik bilimlerine ilgi duyan tüm öğrencileri bu akademik paylaşım ortamının bir parçası olmaya davet ediyorum.</p>
-                            <p>Saygılarımla,<br>Arş. Gör. Dr. M. Hüdai ÇULHA<br>IVSA Konya Topluluk Akademik Danışmanı</p>
+                            <p>Saygılarımla,<br>Arş. Gör. Dr. M. Hüdai ÇULHA<br>IVSA Konya Akademik Danışman</p>
                         </div>
                     </div>
 
@@ -405,7 +394,6 @@ flex: 1;
                             <p>Bunun yanı sıra, ilk kolokyumumuz ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle gerçekleştirilmiş; bu destekler, etkinliğimizin akademik niteliğini ve kurumsal güvenilirliğini daha da güçlendirmiştir.</p>
                             <p>II. Ulusal Veteriner Klinik Bilimleri Kolokyumu kapsamında; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel veteriner klinik bilgileri ele alınacak, öğrencilerin klinik dersler ve saha uygulamalarına daha donanımlı şekilde hazırlanması hedeflenecektir. Programımız; teorik bilginin klinik pratikle buluştuğu, etkileşimin ve öğrenci katılımının ön planda olduğu bir içerikle planlanmıştır.</p>
                             <p>Türkiye’nin ve farklı ülkelerin veteriner fakültelerinden öğrencileri; bilimsel paylaşımla güçlenen, mesleki vizyon kazandıran ve öğrenci dayanışmasını artıran bu kolokyumda aramızda görmekten onur duyarız.</p>
-                          <p>Saygılarımla,<br>Mehmet KAVAKLI<br>IVSA Konya Başkanı</p>
                         </div>
                     </div>
 
@@ -478,8 +466,8 @@ flex: 1;
                 <h2 class="page-title">İletişim</h2>
                 <div class="grid-layout">
                     <div>
-                        <p style="font-size:1.1rem; margin-bottom:15px;"><i class="fas fa-envelope" style="color:var(--accent-blue)"></i> info@ivsakonya.org</p>
-                        <p style="font-size:1.1rem;"><i class="fab fa-instagram" style="color:var(--accent-blue)"></i> @ivsakonya</p>
+                        <p style="font-size:1.1rem; margin-bottom:15px;"><i class="fas fa-envelope" style="color:var(--accent-blue)"></i> ivsaturkey.konya@ivsamo.org</p>
+                        <p style="font-size:1.1rem;"><i class="fab fa-instagram" style="color:var(--accent-blue)"></i> @ivsakonya & @ivsakonyakongre</p>
                     </div>
                     <div style="background:rgba(0,0,0,0.5); height:150px; display:flex; align-items:center; justify-content:center; border-radius:10px; color:#777; border:1px solid rgba(255,255,255,0.1);">
                         HARİTA
@@ -495,9 +483,25 @@ flex: 1;
     <script>
         function showPage(pageId) {
             document.querySelectorAll('.content-page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            const targetPage = document.getElementById(pageId);
+            targetPage.classList.add('active');
             document.getElementById('nav-list').classList.remove('show');
-            window.scrollTo(0,0);
+            
+            if (pageId === 'home-page') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                setTimeout(() => {
+                    const glassBox = targetPage.querySelector('.glass-box');
+                    if (glassBox) {
+                        const offset = 100;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = glassBox.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                }, 10);
+            }
         }
         function toggleMenu() {
             document.getElementById('nav-list').classList.toggle('show');
