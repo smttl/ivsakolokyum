@@ -148,7 +148,7 @@
             margin: 0 auto;
         }
 
-        /* Bu yapı hem masaüstü hem mobil için iskelet olacak */
+        /* İSKELET */
         .split-container {
             display: flex;
             flex-direction: row; /* Masaüstü: YAN YANA */
@@ -157,16 +157,16 @@
             align-items: flex-start;
         }
 
-        /* --- SOL TARA (MASAÜSTÜ SABİT BİLGİLER) --- */
+        /* --- SOL PANEL (SABİT BİLGİLER) --- */
         .left-panel {
             flex: 1;
-            position: sticky; /* Masaüstünde sabit kalır */
+            position: sticky; 
             top: 150px;
             text-align: left;
             animation: fadeLeft 1s ease;
         }
 
-        /* --- SAĞ TARAF (DEĞİŞKEN İÇERİK) --- */
+        /* --- SAĞ PANEL (DEĞİŞKEN İÇERİK) --- */
         .right-panel {
             flex: 1.2;
             min-height: 500px;
@@ -188,15 +188,31 @@
         /* --- DETAYLAR --- */
         .hero-top-logo { width: 150px; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(255,255,255,0.3)); display: block; }
         .hero-title-main { font-size: 3.5rem; font-weight: 800; line-height: 1.2; color: #ffffff; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .hero-info { display: flex; flex-direction: column; gap: 15px; font-size: 1.3rem; font-weight: 600; color: #eeeeee; border-left: 4px solid var(--accent-blue); padding-left: 20px; }
+        
+        .hero-info { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            font-size: 1.3rem; 
+            font-weight: 600; 
+            color: #eeeeee; 
+            border-left: 4px solid var(--accent-blue); 
+            padding-left: 20px; 
+        }
         .hero-info i { color: var(--accent-blue); margin-right: 10px; }
         .hashtag { margin-top: 40px; font-size: 1.5rem; color: rgba(255,255,255,0.8); font-weight: 300; letter-spacing: 1px; }
+        
+        .hero-img-container { 
+            display: flex; 
+            justify-content: center; 
+            width: 100%;
+        }
         
         .hero-img { 
             max-width: 550px; width: 100%; 
             filter: drop-shadow(0 0 30px rgba(51, 173, 255, 0.4)); 
             animation: float 6s ease-in-out infinite; 
-            display: block; margin: 0 auto;
+            display: block; 
         }
         @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
 
@@ -219,44 +235,67 @@
         footer { text-align: center; padding: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5); background: transparent; border-top: none; position: relative; z-index: 10; margin-top: auto; }
 
         /* ========================================= */
-        /* MOBİL UYUMLULUK (ESKİ HALİNİ KORUYORUZ)   */
+        /* MOBİL UYUMLULUK (DÜZELTİLDİ: ORTALI & SIRALI) */
         /* ========================================= */
         @media (max-width: 1024px) {
             
-            /* Sayfa kaydırma açık */
             html, body { overflow-y: auto !important; height: auto !important; position: static; }
             .fixed-background { background-attachment: fixed; }
 
             header { padding: 20px; }
             .menu-toggle { display: block; position: fixed; top: 25px; right: 25px; z-index: 10002; background: rgba(0, 13, 26, 0.8); backdrop-filter: blur(5px); width: 45px; height: 45px; line-height: 45px; text-align: center; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); }
-            .logo-container img { height: 60px; } /* Mobilde logo küçük */
+            .logo-container img { height: 60px; } 
 
             nav ul { display: none; flex-direction: column !important; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 8, 15, 0.98); justify-content: center; align-items: center; gap: 30px; z-index: 9999; }
             nav ul.show { display: flex !important; }
             nav ul li a { font-size: 1.3rem; }
 
-            /* ANA YAPI DEĞİŞİMİ */
             main { display: block; height: auto; padding-top: 100px; padding-bottom: 40px; }
             
             .split-container {
-                /* BURASI ÖNEMLİ: Mobilde eski düzeni sağlamak için TERS SÜTUN yapıyoruz */
-                flex-direction: column-reverse; 
+                /* Mobilde Logo/Başlık Üstte, İçerik Altta olsun (Normal Akış) */
+                flex-direction: column; 
                 gap: 40px;
+                align-items: center; 
             }
 
-            /* SOL PANEL (BAŞLIK/BİLGİ): Mobilde Altta */
             .left-panel {
                 position: static;
                 text-align: center;
                 padding-right: 0;
+                width: 100%; 
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Logoyu ve başlığı ortala */
             }
-            .hero-info { border-left: none; padding-left: 0; align-items: center; }
+            
+            /* Mobilde tarih bilgisini zorla ortala */
+            .hero-info { 
+                border-left: none; 
+                padding-left: 0; 
+                align-items: center; 
+                text-align: center;
+                width: 100%;
+            }
+            
             .hero-top-logo { margin: 0 auto 15px auto; }
-            .hero-title-main { font-size: 2.2rem; }
+            .hero-title-main { font-size: 2.2rem; text-align: center; }
 
-            /* SAĞ PANEL (İÇERİK/RESİM): Mobilde Üstte */
-            .right-panel { flex: 1; min-height: auto; }
-            .hero-img { max-width: 280px; }
+            .right-panel { 
+                flex: 1; 
+                min-height: auto; 
+                width: 100%;
+            }
+            
+            .hero-img-container { 
+                justify-content: center; 
+                display: flex;
+                width: 100%; 
+            }
+            .hero-img { 
+                max-width: 280px; 
+                margin: 0 auto; 
+            }
             
             .davet-container { grid-template-columns: 1fr; }
             .glass-box { padding: 25px; }
@@ -326,7 +365,7 @@
                                     <p>2025 yılında düzenlenen ilk kolokyum, yüksek katılımlı yapısı ve disiplinler arası içeriğiyle dikkat çekmiş; farklı üniversitelerden gelen öğrencilerin aktif katılım sağladığı nitelikli bir bilimsel platform oluşturmuştur. Etkinlik sürecinde Romanya ve Portekiz’den gelen katılımcılarla uluslararası düzeyde akademik etkileşim sağlanmış, ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle organizasyonun bilimsel altyapısı güçlendirilmiştir.</p>
                                     <p>Bu yıl düzenlenecek kolokyumda; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel klinik yaklaşımlar ele alınacak, öğrencilerin klinik karar verme süreçlerine katkı sağlayacak bilgi ve deneyimlerin paylaşılması amaçlanacaktır. Program içeriği, veteriner fakültesi öğrencilerinin mesleki gelişim süreçlerine doğrudan katkı sunacak şekilde yapılandırılmıştır.</p>
                                     <p>Öğrencilerin erken dönemde bilimsel etkinliklerle buluşmasının, mesleki vizyonlarını şekillendirmede önemli bir rol oynadığına inanıyor; veteriner klinik bilimlerine ilgi duyan tüm öğrencileri bu akademik paylaşım ortamının bir parçası olmaya davet ediyorum.</p>
-                                    <p>Saygılarımla,<br>Arş. Gör. Dr. M. Hüdai ÇULHA<br>IVSA Konya Topluluk Akademik Danışmanı</p>
+                                    <p>Saygılarımla,<br>Arş. Gör. Dr. M. Hüdai ÇULHA</p>
                                 </div>
                             </div>
                             <div class="davet-card">
@@ -412,7 +451,7 @@
                         <h2 class="page-title">İletişim</h2>
                         <div class="grid-layout">
                             <div>
-                                <p style="font-size:1.1rem; margin-bottom:15px;"><i class="fas fa-envelope" style="color:var(--accent-blue)"></i> info@ivsakonya.org</p>
+                                <p style="font-size:1.1rem; margin-bottom:15px;"><i class="fas fa-envelope" style="color:var(--accent-blue)"></i> ivsaturkey.konya@ivsamo.org</p>
                                 <p style="font-size:1.1rem;"><i class="fab fa-instagram" style="color:var(--accent-blue)"></i> @ivsakonya</p>
                             </div>
                             <div style="background:rgba(0,0,0,0.5); height:150px; display:flex; align-items:center; justify-content:center; border-radius:10px; color:#777; border:1px solid rgba(255,255,255,0.1);">
@@ -445,8 +484,14 @@
             } else {
                 // Diğer sayfalarda sağ panele odaklan
                 setTimeout(() => {
+                    // Mobilde başlık alanı sabit olmadığı için direkt içeriğe kaydır
+                    // Masaüstünde de sağ panele odaklanmak mantıklı
                     const rightPanel = document.querySelector('.right-panel');
-                    const offset = 100; // Header payı
+                    
+                    // Mobilde daha fazla offset (header için)
+                    // Masaüstünde biraz daha az olabilir
+                    const offset = window.innerWidth <= 1024 ? 90 : 120;
+                    
                     const bodyRect = document.body.getBoundingClientRect().top;
                     const elementRect = rightPanel.getBoundingClientRect().top;
                     const elementPosition = elementRect - bodyRect;
