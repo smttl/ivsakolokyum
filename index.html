@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- AYARLAR --- */
+        /* --- GENEL AYARLAR --- */
         :root {
             --bg-dark: #000d1a;
             --accent-blue: #33adff; 
@@ -29,6 +29,8 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-body);
@@ -54,7 +56,6 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-        
         .fixed-background::after {
             content: '';
             position: absolute;
@@ -86,7 +87,6 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); 
             transition: transform 0.3s ease;
         }
-        
         .logo-container img:hover { transform: scale(1.15); }
 
         nav ul {
@@ -130,192 +130,138 @@
         .menu-toggle { display: none; font-size: 1.5rem; color: var(--text-white); cursor: pointer; }
 
         /* --- LOADER --- */
-        .loader-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 250px;
-            text-align: center;
-        }
-
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            border-top: 5px solid var(--accent-blue);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(51, 173, 255, 0.2);
-        }
-
-        .loading-text {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            letter-spacing: 1px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
+        .loader-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px; text-align: center; }
+        .spinner { width: 60px; height: 60px; border: 5px solid rgba(255, 255, 255, 0.1); border-top: 5px solid var(--accent-blue); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; box-shadow: 0 0 15px rgba(51, 173, 255, 0.2); }
+        .loading-text { font-size: 1.1rem; color: var(--text-gray); letter-spacing: 1px; animation: pulse 1.5s ease-in-out infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
-        /* --- MAIN --- */
+        /* --- MAIN & SPLIT LAYOUT --- */
         main {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 120px 5% 40px 5%;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
-        .content-page {
+        /* Bu yapı hem masaüstü hem mobil için iskelet olacak */
+        .split-container {
+            display: flex;
+            flex-direction: row; /* Masaüstü: YAN YANA */
+            width: 100%;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        /* --- SOL TARA (MASAÜSTÜ SABİT BİLGİLER) --- */
+        .left-panel {
+            flex: 1;
+            position: sticky; /* Masaüstünde sabit kalır */
+            top: 150px;
+            text-align: left;
+            animation: fadeLeft 1s ease;
+        }
+
+        /* --- SAĞ TARAF (DEĞİŞKEN İÇERİK) --- */
+        .right-panel {
+            flex: 1.2;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-section {
             display: none;
             width: 100%;
-            max-width: 1200px;
-            animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .content-page.active { display: block; }
+        .content-section.active { display: block; }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .glass-box {
-            background: rgba(0, 15, 30, 0.4);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(51, 173, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        h2.page-title {
-            font-size: 2rem;
-            color: var(--accent-blue);
-            margin-bottom: 25px;
-            font-weight: 700;
-            border-bottom: 2px solid rgba(51, 173, 255, 0.3);
-            display: inline-block;
-            padding-bottom: 10px;
-            text-shadow: 0 0 15px rgba(51, 173, 255, 0.3);
-        }
-
-        /* --- HERO --- */
-        #home-page {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-        #home-page.active { display: flex; }
-
-        .hero-text { flex: 1; min-width: 300px; padding-right: 20px; }
+        /* --- DETAYLAR --- */
         .hero-top-logo { width: 150px; margin-bottom: 20px; filter: drop-shadow(0 0 15px rgba(255,255,255,0.3)); display: block; }
         .hero-title-main { font-size: 3.5rem; font-weight: 800; line-height: 1.2; color: #ffffff; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .hero-info { display: flex; flex-direction: column; gap: 15px; font-size: 1.3rem; font-weight: 600; color: #eeeeee; border-left: 4px solid var(--accent-blue); padding-left: 20px; }
         .hero-info i { color: var(--accent-blue); margin-right: 10px; }
         .hashtag { margin-top: 40px; font-size: 1.5rem; color: rgba(255,255,255,0.8); font-weight: 300; letter-spacing: 1px; }
-        .hero-img-container { flex: 1; display: flex; justify-content: flex-end; min-width: 300px; position: relative; }
-        .hero-img { max-width: 550px; width: 100%; filter: drop-shadow(0 0 30px rgba(51, 173, 255, 0.4)); animation: float 6s ease-in-out infinite; }
+        
+        .hero-img { 
+            max-width: 550px; width: 100%; 
+            filter: drop-shadow(0 0 30px rgba(51, 173, 255, 0.4)); 
+            animation: float 6s ease-in-out infinite; 
+            display: block; margin: 0 auto;
+        }
         @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
 
-        /* Grid */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        /* Kutular */
+        .glass-box { background: rgba(0, 15, 30, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(51, 173, 255, 0.1); padding: 40px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); }
         
-        footer { text-align: center; padding: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5); background: transparent; border-top: none; position: relative; z-index: 10; }
+        /* Davet Kartları */
+        .davet-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+        .davet-card { background: rgba(255, 255, 255, 0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; transition: transform 0.3s ease; }
+        .davet-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-color: var(--accent-blue); }
+        .img-wrapper { width: 140px; height: 140px; margin: 0 auto 20px auto; border-radius: 50%; padding: 5px; border: 2px solid var(--accent-blue); background: rgba(255,255,255,0.05); }
+        .img-wrapper img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .davet-name { color: var(--accent-blue); font-size: 1.4rem; font-weight: 700; margin-bottom: 5px; }
+        .davet-title { display: block; font-size: 0.9rem; color: #aaa; margin-bottom: 20px; font-style: italic; text-transform: uppercase; }
+        .davet-text { text-align: left; color: #ddd; font-size: 1rem; line-height: 1.6; }
+        .davet-text p { margin-bottom: 12px; }
 
-        /* MOBİL */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        
+        footer { text-align: center; padding: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5); background: transparent; border-top: none; position: relative; z-index: 10; margin-top: auto; }
+
+        /* ========================================= */
+        /* MOBİL UYUMLULUK (ESKİ HALİNİ KORUYORUZ)   */
+        /* ========================================= */
         @media (max-width: 1024px) {
-            html, body { overflow: auto; position: static; height: auto; }
+            
+            /* Sayfa kaydırma açık */
+            html, body { overflow-y: auto !important; height: auto !important; position: static; }
             .fixed-background { background-attachment: fixed; }
+
+            header { padding: 20px; }
             .menu-toggle { display: block; position: fixed; top: 25px; right: 25px; z-index: 10002; background: rgba(0, 13, 26, 0.8); backdrop-filter: blur(5px); width: 45px; height: 45px; line-height: 45px; text-align: center; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); }
-            .logo-container img { height: 60px; }
+            .logo-container img { height: 60px; } /* Mobilde logo küçük */
+
             nav ul { display: none; flex-direction: column !important; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 8, 15, 0.98); justify-content: center; align-items: center; gap: 30px; z-index: 9999; }
             nav ul.show { display: flex !important; }
             nav ul li a { font-size: 1.3rem; }
+
+            /* ANA YAPI DEĞİŞİMİ */
             main { display: block; height: auto; padding-top: 100px; padding-bottom: 40px; }
-            .glass-box { max-height: none; overflow: visible; height: auto; margin-bottom: 30px; padding: 25px; }
-            .grid-layout { grid-template-columns: 1fr; }
-            #home-page { flex-direction: column-reverse; text-align: center; gap: 40px; margin-top: 20px; }
-            .hero-top-logo { margin: 0 auto 10px auto; }
-            .hero-title-main { font-size: 2.2rem; }
+            
+            .split-container {
+                /* BURASI ÖNEMLİ: Mobilde eski düzeni sağlamak için TERS SÜTUN yapıyoruz */
+                flex-direction: column-reverse; 
+                gap: 40px;
+            }
+
+            /* SOL PANEL (BAŞLIK/BİLGİ): Mobilde Altta */
+            .left-panel {
+                position: static;
+                text-align: center;
+                padding-right: 0;
+            }
             .hero-info { border-left: none; padding-left: 0; align-items: center; }
-            .hero-img-container { justify-content: center; }
-            .hero-img { max-width: 280px; } 
-            footer { position: relative; width: 100%; padding-bottom: 30px; }
-        }
+            .hero-top-logo { margin: 0 auto 15px auto; }
+            .hero-title-main { font-size: 2.2rem; }
 
-        /* --- DAVET ÖZEL TASARIM --- */
-        .davet-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr; 
-            gap: 40px;
-            margin-top: 20px;
-        }
-
-        .davet-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .davet-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border-color: var(--accent-blue);
-        }
-
-        .img-wrapper {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 20px auto;
-            border-radius: 50%;
-            padding: 5px;
-            border: 2px solid var(--accent-blue);
-            background: rgba(255,255,255,0.05);
-        }
-        .img-wrapper img {
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover; 
-        }
-
-        .davet-name {
-            color: var(--accent-blue);
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .davet-title {
-            display: block;
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-bottom: 20px;
-            font-style: italic;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* METİN DÜZENLEMELERİ (BOŞLUK SORUNU ÇÖZÜLDÜ) */
-        .davet-text {
-            text-align: left; /* Justify yerine Left yapıldı */
-            color: #ddd;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        .davet-text p {
-            margin-bottom: 12px; /* Paragraf arası boşluk dengelendi */
-        }
-        .davet-text p:last-child { margin-bottom: 0; }
-
-        @media (max-width: 768px) {
+            /* SAĞ PANEL (İÇERİK/RESİM): Mobilde Üstte */
+            .right-panel { flex: 1; min-height: auto; }
+            .hero-img { max-width: 280px; }
+            
             .davet-container { grid-template-columns: 1fr; }
+            .glass-box { padding: 25px; }
+            
+            footer { position: relative; width: 100%; padding-bottom: 30px; }
         }
     </style>
 </head>
@@ -324,7 +270,7 @@
     <div class="fixed-background"></div>
 
     <header>
-        <div class="logo-container" onclick="showPage('home-page')">
+        <div class="logo-container" onclick="showContent('home-content')">
             <img src="logo2.png" alt="Logo">
         </div>
         
@@ -332,23 +278,23 @@
 
         <nav>
             <ul id="nav-list">
-                <li><a onclick="showPage('home-page')">Ana Sayfa</a></li>
-                <li><a onclick="showPage('davet-page')">Davet</a></li>
-                <li><a onclick="showPage('kurullar-page')">Kurullar</a></li>
-                <li><a onclick="showPage('bilimsel-page')">Bilimsel Program</a></li>
-                <li><a onclick="showPage('kayit-page')">Kayıt & Konaklama</a></li>
-                <li><a onclick="showPage('konusmacilar-page')">Konuşmacılar</a></li>
-                <li><a onclick="showPage('sponsorlar-page')">Sponsorlar</a></li>
-                <li><a onclick="showPage('genel-page')">Genel Bilgiler</a></li>
-                <li><a onclick="showPage('iletisim-page')">İletişim</a></li>
+                <li><a onclick="showContent('home-content')">Ana Sayfa</a></li>
+                <li><a onclick="showContent('davet-content')">Davet</a></li>
+                <li><a onclick="showContent('kurullar-content')">Kurullar</a></li>
+                <li><a onclick="showContent('bilimsel-content')">Bilimsel Program</a></li>
+                <li><a onclick="showContent('kayit-content')">Kayıt & Konaklama</a></li>
+                <li><a onclick="showContent('konusmacilar-content')">Konuşmacılar</a></li>
+                <li><a onclick="showContent('sponsorlar-content')">Sponsorlar</a></li>
+                <li><a onclick="showContent('genel-content')">Genel Bilgiler</a></li>
+                <li><a onclick="showContent('iletisim-content')">İletişim</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        
-        <div id="home-page" class="content-page active">
-            <div class="hero-text">
+        <div class="split-container">
+            
+            <div class="left-panel">
                 <img src="logo.svg" alt="IVSA Konya Logo" class="hero-top-logo">
                 <h1 class="hero-title-main">IVSA KONYA<br>II. VETERİNER KLİNİK<br>BİLİMLERİ KOLOKYUMU</h1>
                 <div class="hero-info">
@@ -357,142 +303,163 @@
                 </div>
                 <div class="hashtag">#HerDaimİleri</div>
             </div>
-            <div class="hero-img-container">
-                <img src="asa.png" class="hero-img" alt="Sembol">
-            </div>
-        </div>
 
-        <div id="davet-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Davet Mektupları</h2>
+            <div class="right-panel">
                 
-                <div class="davet-container">
-                    
-                    <div class="davet-card">
-                        <div class="img-wrapper">
-                            <img src="h.jpeg" alt="Danışman Hoca">
-                        </div>
-                        <h3 class="davet-name">Arş. Gör. Dr. M. Hüdai ÇULHA</h3>
-                        <span class="davet-title">IVSA Konya Akademik Danışmanı</span>
-                        
-                        <div class="davet-text">
-                            <p>Kıymetli Öğrenciler,</p>
-                            <p>Veteriner hekimlik eğitimi, yalnızca teorik bilginin aktarılmasıyla değil; öğrencilerin bilimsel düşünme becerilerini geliştiren, farklı klinik disiplinleri bir arada değerlendirmelerini sağlayan akademik ortamlarla güçlenmektedir. Bu bakış açısıyla planlanan II. Ulusal Veteriner Klinik Bilimleri Kolokyumu, 18–19 Nisan 2026 tarihlerinde IVSA Konya’nın öğrenci merkezli yaklaşımıyla gerçekleştirilecektir.</p>
-                            <p>2025 yılında düzenlenen ilk kolokyum, yüksek katılımlı yapısı ve disiplinler arası içeriğiyle dikkat çekmiş; farklı üniversitelerden gelen öğrencilerin aktif katılım sağladığı nitelikli bir bilimsel platform oluşturmuştur. Etkinlik sürecinde Romanya ve Portekiz’den gelen katılımcılarla uluslararası düzeyde akademik etkileşim sağlanmış, ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle organizasyonun bilimsel altyapısı güçlendirilmiştir.</p>
-                            <p>Bu yıl düzenlenecek kolokyumda; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel klinik yaklaşımlar ele alınacak, öğrencilerin klinik karar verme süreçlerine katkı sağlayacak bilgi ve deneyimlerin paylaşılması amaçlanacaktır. Program içeriği, veteriner fakültesi öğrencilerinin mesleki gelişim süreçlerine doğrudan katkı sunacak şekilde yapılandırılmıştır.</p>
-                            <p>Öğrencilerin erken dönemde bilimsel etkinliklerle buluşmasının, mesleki vizyonlarını şekillendirmede önemli bir rol oynadığına inanıyor; veteriner klinik bilimlerine ilgi duyan tüm öğrencileri bu akademik paylaşım ortamının bir parçası olmaya davet ediyorum.</p>
-                            <p>Saygılarımla,<br>Arş. Gör. Dr. M. Hüdai ÇULHA<br>IVSA Konya Topluluk Akademik Danışmanı</p>
-                        </div>
-                    </div>
-
-                    <div class="davet-card">
-                        <div class="img-wrapper">
-                            <img src="m.jpeg" alt="Kulüp Başkanı">
-                        </div>
-                        <h3 class="davet-name">Mehmet KAVAKLI</h3>
-                        <span class="davet-title">IVSA Konya Başkanı</span>
-                        
-                        <div class="davet-text">
-                            <p>Değerli Öğrenci Arkadaşlarım,</p>
-                            <p>IVSA Konya olarak, veteriner hekim adaylarının klinik bilimler alanında güncel bilgiye erişimini desteklemeyi, öğrenci temelli bilimsel etkinlikleri güçlendirmeyi ve ulusal–uluslararası etkileşimi artırmayı temel bir sorumluluk olarak görüyoruz. Bu anlayışla, 18–19 Nisan 2026 tarihlerinde düzenleyeceğimiz II. Ulusal Veteriner Klinik Bilimleri Kolokyumu’na sizleri davet etmekten büyük mutluluk duyuyorum.</p>
-                            <p>Birincisini 7–9 Mayıs 2025 tarihlerinde gerçekleştirdiğimiz kolokyumumuz, 350’nin üzerinde katılımcı ile önemli bir başarıya ulaşmış; bu katılımın 150’den fazlasını farklı üniversitelerden gelen veteriner fakültesi öğrencileri oluşturmuştur. Ayrıca ilk kolokyumumuzda Romanya ve Portekiz’den misafir öğrenci ve temsilcileri ağırlayarak etkinliğimize uluslararası bir boyut kazandırdık.</p>
-                            <p>Bunun yanı sıra, ilk kolokyumumuz ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle gerçekleştirilmiş; bu destekler, etkinliğimizin akademik niteliğini ve kurumsal güvenilirliğini daha da güçlendirmiştir.</p>
-                            <p>II. Ulusal Veteriner Klinik Bilimleri Kolokyumu kapsamında; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel veteriner klinik bilgileri ele alınacak, öğrencilerin klinik dersler ve saha uygulamalarına daha donanımlı şekilde hazırlanması hedeflenecektir. Programımız; teorik bilginin klinik pratikle buluştuğu, etkileşimin ve öğrenci katılımının ön planda olduğu bir içerikle planlanmıştır.</p>
-                            <p>Türkiye’nin ve farklı ülkelerin veteriner fakültelerinden öğrencileri; bilimsel paylaşımla güçlenen, mesleki vizyon kazandıran ve öğrenci dayanışmasını artıran bu kolokyumda aramızda görmekten onur duyarız.</p>
-                          <p>Saygılarımla,<br>Mehmet KAVAKLI<br>IVSA Konya Başkanı</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div id="kurullar-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Kurullar</h2>
-                <div class="loader-container">
-                    <div class="spinner"></div>
-                    <div class="loading-text">Kurul listeleri güncelleniyor...</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="bilimsel-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Bilimsel Program</h2>
-                <div class="loader-container">
-                    <div class="spinner"></div>
-                    <div class="loading-text">Program detayları hazırlanıyor...</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="kayit-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Kayıt ve Konaklama</h2>
-                <div class="loader-container">
-                    <div class="spinner"></div>
-                    <div class="loading-text">Kayıt ve konaklama detayları yakında...</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="konusmacilar-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Konuşmacılar</h2>
-                <div class="loader-container">
-                    <div class="spinner"></div>
-                    <div class="loading-text">Konuşmacılarımız yakında duyurulacaktır...</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="sponsorlar-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Sponsorlar</h2>
-                <div class="loader-container">
-                    <div class="spinner"></div>
-                    <div class="loading-text">Sponsorluk çalışmaları devam etmektedir...</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="genel-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Genel Bilgiler</h2>
-                <ul style="margin-left:20px; color:#ddd; line-height:2; font-size:1.1rem;">
-                    <li>Kongre dili Türkçedir.</li>
-                    <li>Katılım sertifikası verilecektir.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="iletisim-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">İletişim</h2>
-                <div class="grid-layout">
-                    <div>
-                        <p style="font-size:1.1rem; margin-bottom:15px;"><i class="fas fa-envelope" style="color:var(--accent-blue)"></i> ivsaturkey.konya@ivsamo.org</p>
-                        <p style="font-size:1.1rem;"><i class="fab fa-instagram" style="color:var(--accent-blue)"></i> @ivsakonya & @ivsakonyakongre</p>
-                    </div>
-                    <div style="background:rgba(0,0,0,0.5); height:150px; display:flex; align-items:center; justify-content:center; border-radius:10px; color:#777; border:1px solid rgba(255,255,255,0.1);">
-                        HARİTA
+                <div id="home-content" class="content-section active">
+                    <div class="hero-img-container">
+                        <img src="asa.png" class="hero-img" alt="Sembol">
                     </div>
                 </div>
-            </div>
-        </div>
 
-    </main>
+                <div id="davet-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">Davet Mektupları</h2>
+                        <div class="davet-container">
+                            <div class="davet-card">
+                                <div class="img-wrapper"><img src="h.jpeg" alt="Hoca"></div>
+                                <h3 class="davet-name">Arş. Gör. Dr. M. Hüdai ÇULHA</h3>
+                                <span class="davet-title">IVSA Konya Akademik Danışmanı</span>
+                                <div class="davet-text">
+                                    <p>Kıymetli Öğrenciler,</p>
+                                    <p>Veteriner hekimlik eğitimi, yalnızca teorik bilginin aktarılmasıyla değil; öğrencilerin bilimsel düşünme becerilerini geliştiren, farklı klinik disiplinleri bir arada değerlendirmelerini sağlayan akademik ortamlarla güçlenmektedir. Bu bakış açısıyla planlanan II. Ulusal Veteriner Klinik Bilimleri Kolokyumu, 18–19 Nisan 2026 tarihlerinde IVSA Konya’nın öğrenci merkezli yaklaşımıyla gerçekleştirilecektir.</p>
+                                    <p>2025 yılında düzenlenen ilk kolokyum, yüksek katılımlı yapısı ve disiplinler arası içeriğiyle dikkat çekmiş; farklı üniversitelerden gelen öğrencilerin aktif katılım sağladığı nitelikli bir bilimsel platform oluşturmuştur. Etkinlik sürecinde Romanya ve Portekiz’den gelen katılımcılarla uluslararası düzeyde akademik etkileşim sağlanmış, ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle organizasyonun bilimsel altyapısı güçlendirilmiştir.</p>
+                                    <p>Bu yıl düzenlenecek kolokyumda; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel klinik yaklaşımlar ele alınacak, öğrencilerin klinik karar verme süreçlerine katkı sağlayacak bilgi ve deneyimlerin paylaşılması amaçlanacaktır. Program içeriği, veteriner fakültesi öğrencilerinin mesleki gelişim süreçlerine doğrudan katkı sunacak şekilde yapılandırılmıştır.</p>
+                                    <p>Öğrencilerin erken dönemde bilimsel etkinliklerle buluşmasının, mesleki vizyonlarını şekillendirmede önemli bir rol oynadığına inanıyor; veteriner klinik bilimlerine ilgi duyan tüm öğrencileri bu akademik paylaşım ortamının bir parçası olmaya davet ediyorum.</p>
+                                    <p>Saygılarımla,<br>Arş. Gör. Dr. M. Hüdai ÇULHA<br>IVSA Konya Topluluk Akademik Danışmanı</p>
+                                </div>
+                            </div>
+                            <div class="davet-card">
+                                <div class="img-wrapper"><img src="m.jpeg" alt="Başkan"></div>
+                                <h3 class="davet-name">Mehmet KAVAKLI</h3>
+                                <span class="davet-title">IVSA Konya Başkanı</span>
+                                <div class="davet-text">
+                                    <p>Değerli Öğrenci Arkadaşlarım,</p>
+                                    <p>IVSA Konya olarak, veteriner hekim adaylarının klinik bilimler alanında güncel bilgiye erişimini desteklemeyi, öğrenci temelli bilimsel etkinlikleri güçlendirmeyi ve ulusal–uluslararası etkileşimi artırmayı temel bir sorumluluk olarak görüyoruz. Bu anlayışla, 18–19 Nisan 2026 tarihlerinde düzenleyeceğimiz II. Ulusal Veteriner Klinik Bilimleri Kolokyumu’na sizleri davet etmekten büyük mutluluk duyuyorum.</p>
+                                    <p>Birincisini 7–9 Mayıs 2025 tarihlerinde gerçekleştirdiğimiz kolokyumumuz, 350’nin üzerinde katılımcı ile önemli bir başarıya ulaşmış; bu katılımın 150’den fazlasını farklı üniversitelerden gelen veteriner fakültesi öğrencileri oluşturmuştur. Ayrıca ilk kolokyumumuzda Romanya ve Portekiz’den misafir öğrenci ve temsilcileri ağırlayarak etkinliğimize uluslararası bir boyut kazandırdık.</p>
+                                    <p>Bunun yanı sıra, ilk kolokyumumuz ÜNİDES ve Selçuk Üniversitesi BAP Koordinatörlüğü destekleriyle gerçekleştirilmiş; bu destekler, etkinliğimizin akademik niteliğini ve kurumsal güvenilirliğini daha da güçlendirmiştir.</p>
+                                    <p>II. Ulusal Veteriner Klinik Bilimleri Kolokyumu kapsamında; İç Hastalıkları, Cerrahi, Doğum ve Jinekoloji alanlarında güncel veteriner klinik bilgileri ele alınacak, öğrencilerin klinik dersler ve saha uygulamalarına daha donanımlı şekilde hazırlanması hedeflenecektir. Programımız; teorik bilginin klinik pratikle buluştuğu, etkileşimin ve öğrenci katılımının ön planda olduğu bir içerikle planlanmıştır.</p>
+                                    <p>Türkiye’nin ve farklı ülkelerin veteriner fakültelerinden öğrencileri; bilimsel paylaşımla güçlenen, mesleki vizyon kazandıran ve öğrenci dayanışmasını artıran bu kolokyumda aramızda görmekten onur duyarız.</p>
+                                    <p>Saygılarımla,<br>Mehmet KAVAKLI<br>IVSA Konya Başkanı</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="kurullar-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">Kurullar</h2>
+                        <div class="loader-container">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Kurul listeleri güncelleniyor...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bilimsel-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">Bilimsel Program</h2>
+                        <div class="loader-container">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Program detayları hazırlanıyor...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="kayit-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">Kayıt ve Konaklama</h2>
+                        <div class="loader-container">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Kayıt ve konaklama detayları yakında...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="konusmacilar-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">Konuşmacılar</h2>
+                        <div class="loader-container">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Konuşmacılarımız yakında duyurulacaktır...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sponsorlar-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">Sponsorlar</h2>
+                        <div class="loader-container">
+                            <div class="spinner"></div>
+                            <div class="loading-text">Sponsorluk çalışmaları devam etmektedir...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="genel-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">Genel Bilgiler</h2>
+                        <ul style="margin-left:20px; color:#ddd; line-height:2; font-size:1.1rem;">
+                            <li>Kongre dili Türkçedir.</li>
+                            <li>Katılım sertifikası verilecektir.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="iletisim-content" class="content-section">
+                    <div class="glass-box">
+                        <h2 class="page-title">İletişim</h2>
+                        <div class="grid-layout">
+                            <div>
+                                <p style="font-size:1.1rem; margin-bottom:15px;"><i class="fas fa-envelope" style="color:var(--accent-blue)"></i> info@ivsakonya.org</p>
+                                <p style="font-size:1.1rem;"><i class="fab fa-instagram" style="color:var(--accent-blue)"></i> @ivsakonya</p>
+                            </div>
+                            <div style="background:rgba(0,0,0,0.5); height:150px; display:flex; align-items:center; justify-content:center; border-radius:10px; color:#777; border:1px solid rgba(255,255,255,0.1);">
+                                HARİTA
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> </div> </main>
 
     <footer>2026|smtl.</footer>
 
     <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.content-page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+        function showContent(contentId) {
+            // 1. Tüm içerikleri gizle
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            
+            // 2. Seçilen içeriği göster
+            const target = document.getElementById(contentId);
+            if(target) target.classList.add('active');
+            
+            // 3. Menüyü kapat
             document.getElementById('nav-list').classList.remove('show');
-            window.scrollTo(0,0);
+            
+            // 4. OTOMATİK KAYDIRMA
+            if (contentId === 'home-content') {
+                // Ana sayfaysa en tepeye çık
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // Diğer sayfalarda sağ panele odaklan
+                setTimeout(() => {
+                    const rightPanel = document.querySelector('.right-panel');
+                    const offset = 100; // Header payı
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = rightPanel.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 10);
+            }
         }
+        
         function toggleMenu() {
             document.getElementById('nav-list').classList.toggle('show');
         }
