@@ -303,6 +303,78 @@
             .hero-img { max-width: 280px; } 
             footer { position: relative; width: 100%; padding-bottom: 30px; }
         }
+/* --- DAVET SAYFASI ÖZEL TASARIMI --- */
+.davet-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Yan yana iki eşit kutu */
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.davet-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.davet-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-color: var(--accent-blue);
+}
+
+.img-wrapper {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px solid var(--accent-blue); /* Mavi çerçeve */
+    background: rgba(255,255,255,0.05);
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* Resmi bozmadan yuvarlağın içine sığdırır */
+}
+
+.davet-name {
+    color: var(--accent-blue);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.davet-title {
+    display: block;
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 20px;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.davet-text {
+    text-align: justify; /* Yazıyı iki yana yaslar */
+    color: #ddd;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Mobilde alt alta olsun */
+@media (max-width: 768px) {
+    .davet-container {
+        grid-template-columns: 1fr;
+    }
+}
+      
     </style>
 </head>
 <body>
@@ -349,15 +421,38 @@
         </div>
 
         <div id="davet-page" class="content-page">
-            <div class="glass-box">
-                <h2 class="page-title">Davet Mektubu</h2>
-                <p style="line-height: 1.8; color: #ddd; font-size: 1.1rem;">
-                    Değerli Meslektaşlarımız,<br><br>
-                    IVSA Konya olarak düzenlediğimiz II. Veteriner Klinik Bilimleri Kolokyumu'nda sizleri aramızda görmekten mutluluk duyarız.
-                    <br><br>
+    <div class="glass-box">
+        <h2 class="page-title">Davet Mektupları</h2>
+        
+        <div class="davet-container">
+            
+            <div class="davet-card">
+                <div class="img-wrapper">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Danışman Hoca">
+                </div>
+                <h3 class="davet-name">Prof. Dr. İsim Soyisim</h3>
+                <span class="davet-title">Danışman Hoca</span>
+                <p class="davet-text">
+                    Değerli Meslektaşlarım,<br><br>
+                    Bilimin ışığında bir araya geldiğimiz bu kıymetli organizasyonda sizleri aramızda görmekten büyük mutluluk duyarız. Akademik gelişimin ve mesleki dayanışmanın zirve yapacağı bu günlerde buluşmak dileğiyle.
                 </p>
             </div>
+
+            <div class="davet-card">
+                <div class="img-wrapper">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="Kulüp Başkanı">
+                </div>
+                <h3 class="davet-name">İsim Soyisim</h3>
+                <span class="davet-title">IVSA Konya Başkanı</span>
+                <p class="davet-text">
+                    Sevgili Öğrenci Arkadaşlarım,<br><br>
+                    IVSA Konya ailesi olarak uzun süredir üzerinde titizlikle çalıştığımız bu zirvede sizleri ağırlamaktan onur duyarız. Enerjimiz ve heyecanımızla mesleğimize değer katmak için sabırsızlanıyoruz.
+                </p>
+            </div>
+
         </div>
+    </div>
+</div>
 
         <div id="kurullar-page" class="content-page">
             <div class="glass-box">
