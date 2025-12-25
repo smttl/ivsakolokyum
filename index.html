@@ -232,10 +232,16 @@
 
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         
+        /* GENEL BİLGİLER LİSTESİ */
+        .info-list { list-style: none; padding: 0; color: #ddd; font-size: 1rem; line-height: 1.7; text-align: left; }
+        .info-list li { margin-bottom: 15px; }
+        .info-list strong { color: var(--accent-blue); margin-right: 5px; }
+        .info-title-sub { color: #fff; font-size: 1.2rem; margin-top: 25px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
+
         footer { text-align: center; padding: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.5); background: transparent; border-top: none; position: relative; z-index: 10; margin-top: auto; }
 
         /* ========================================= */
-        /* MOBİL UYUMLULUK (DÜZELTİLDİ: ORTALI & SIRALI) */
+        /* MOBİL UYUMLULUK                           */
         /* ========================================= */
         @media (max-width: 1024px) {
             
@@ -253,8 +259,7 @@
             main { display: block; height: auto; padding-top: 100px; padding-bottom: 40px; }
             
             .split-container {
-                /* Mobilde Logo/Başlık Üstte, İçerik Altta olsun (Normal Akış) */
-                flex-direction: column; 
+                flex-direction: column-reverse; 
                 gap: 40px;
                 align-items: center; 
             }
@@ -266,10 +271,9 @@
                 width: 100%; 
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* Logoyu ve başlığı ortala */
+                align-items: center; 
             }
             
-            /* Mobilde tarih bilgisini zorla ortala */
             .hero-info { 
                 border-left: none; 
                 padding-left: 0; 
@@ -439,10 +443,36 @@
                 <div id="genel-content" class="content-section">
                     <div class="glass-box">
                         <h2 class="page-title">Genel Bilgiler</h2>
-                        <ul style="margin-left:20px; color:#ddd; line-height:2; font-size:1.1rem;">
-                            <li>Kongre dili Türkçedir.</li>
-                            <li>Katılım sertifikası verilecektir.</li>
+                        
+                        <ul class="info-list">
+                            <li><strong><i class="far fa-calendar-alt"></i> Tarih:</strong> 18-19 Nisan 2026</li>
+                            <li><strong><i class="fas fa-map-marker-alt"></i> Merkez:</strong> Selçuk Üniversitesi Küçük Hayvan Hastanesi, Mehmet Akif Ersoy Konferans Salonu</li>
                         </ul>
+
+                        <h3 class="info-title-sub">Kongre Hakkında</h3>
+                        <p style="text-align: left; color:#ddd; margin-bottom:15px; line-height: 1.6;">
+                            II. Ulusal IVSA Konya Klinik Bilimleri Kolokyumu, veteriner hekimlik öğrencileri ve profesyonelleri bir araya getiren büyük çapta bir organizasyondur. Amacımız, klinik bilimler alanındaki en güncel bilgileri paylaşmak, sektördeki yeniliklere dikkat çekmek ve mesleki gelişime katkı sağlamaktır.
+                        </p>
+                        <ul class="info-list">
+                            <li><strong>Ana Konular:</strong> Cerrahi, İç Hastalıkları, Doğum ve Jinekoloji</li>
+                            <li><strong>Stant Alanları:</strong> 18-19 Nisan (09.00 - 16.30) - Küçük Hayvan Hastanesi</li>
+                            <li><strong>Davet Mektubu:</strong> Kurum/firma izinleri için talep üzerine gönderilir.</li>
+                            <li><strong>Yaka Kartı:</strong> Bilimsel program ve ikramlara erişim için zorunludur.</li>
+                            <li><strong>Katılım Belgesi:</strong> Gala gecesinde tüm katılımcılara verilecektir.</li>
+                            <li><strong>Instagram:</strong> <a href="https://instagram.com/ivsakonyakongre" target="_blank" style="color:var(--accent-blue); text-decoration:none;">@ivsakonyakongre</a></li>
+                        </ul>
+
+                        <h3 class="info-title-sub">Ulaşım & Konaklama</h3>
+                        <div style="text-align: left; color:#ddd;">
+                            <p style="margin-bottom: 15px;">
+                                <strong style="color: var(--accent-blue);"><i class="fas fa-bus"></i> Otobüs ile:</strong> 
+                                Otogardan kampüs tramvayına binip <em>"Mühendislik Fakültesi"</em> durağında inerek Veteriner Fakültesi tabelalarını takip ediniz. Konuk Evi için <em>"Kampüs Giriş"</em> durağında inilmelidir.
+                            </p>
+                            <p>
+                                <strong style="color: var(--accent-blue);"><i class="fas fa-train"></i> Hızlı Tren (YHT) ile:</strong> 
+                                YHT Garı'ndan <em>"Kunduracılar"</em> durağına yürüyüp kampüs tramvayına bininiz. <em>"Mühendislik Fakültesi"</em> durağında ininiz.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -484,14 +514,8 @@
             } else {
                 // Diğer sayfalarda sağ panele odaklan
                 setTimeout(() => {
-                    // Mobilde başlık alanı sabit olmadığı için direkt içeriğe kaydır
-                    // Masaüstünde de sağ panele odaklanmak mantıklı
                     const rightPanel = document.querySelector('.right-panel');
-                    
-                    // Mobilde daha fazla offset (header için)
-                    // Masaüstünde biraz daha az olabilir
                     const offset = window.innerWidth <= 1024 ? 90 : 120;
-                    
                     const bodyRect = document.body.getBoundingClientRect().top;
                     const elementRect = rightPanel.getBoundingClientRect().top;
                     const elementPosition = elementRect - bodyRect;
