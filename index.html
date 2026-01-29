@@ -976,6 +976,63 @@
             }
         }
 
+        /* SPEAKERS GRID CSS */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .speaker-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-blue);
+        }
+
+        .speaker-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .speaker-name {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .speaker-title {
+            color: #ddd;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 768px) {
+            .speakers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .speakers-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         /* Override inline styles for tighter spacing in registration */
         .registration-content p {
             margin-bottom: 15px !important;
@@ -1554,10 +1611,82 @@
                 <div id="konusmacilar-content" class="content-section">
                     <div class="glass-box">
                         <h2 class="page-title">Konuşmacılar</h2>
-                        <div class="loader-container">
-                            <div class="spinner"></div>
-                            <div class="loading-text">Konuşmacılarımız yakında duyurulacaktır...</div>
+
+                        <div class="speakers-grid">
+                            <!-- 1 -->
+                            <div class="speaker-card">
+                                <img src="k/mustafa_arican.jpg" alt="Prof. Dr. Mustafa ARICAN" class="speaker-img">
+                                <div class="speaker-name">Prof. Dr. Mustafa ARICAN</div>
+                                <div class="speaker-title">Selçuk Üniversitesi Cerrahi Anabilim Dalı</div>
+                            </div>
+                            <!-- 2 -->
+                            <div class="speaker-card">
+                                <img src="k/cagri_cingi.jpg" alt="Prof. Dr. Çağrı ÇINGI" class="speaker-img">
+                                <div class="speaker-name">Prof. Dr. Çağrı ÇINGI</div>
+                                <div class="speaker-title"></div>
+                            </div>
+                            <!-- 3 -->
+                            <div class="speaker-card">
+                                <img src="k/murat_karabagli.jpg" alt="Prof. Dr. Murat KARABAĞLI" class="speaker-img">
+                                <div class="speaker-name">Prof. Dr. Murat KARABAĞLI</div>
+                                <div class="speaker-title">İstanbul Üniversitesi – Cerrahpaşa Radyoloji Anabilim Dalı
+                                </div>
+                            </div>
+                            <!-- 4 -->
+                            <div class="speaker-card">
+                                <img src="k/mehmet_cagri_karakurum.jpeg" alt="Prof. Dr. Mehmet Çağrı KARAKURUM"
+                                    class="speaker-img">
+                                <div class="speaker-name">Prof. Dr. Mehmet Çağrı KARAKURUM</div>
+                                <div class="speaker-title">Mehmet Akif Ersoy Üniversitesi İç Hastalıkları Anabilim Dalı
+                                </div>
+                            </div>
+                            <!-- 5 -->
+                            <div class="speaker-card">
+                                <img src="k/hakan_salci.png" alt="Prof. Dr. Hakan SALCI" class="speaker-img">
+                                <div class="speaker-name">Prof. Dr. Hakan SALCI</div>
+                                <div class="speaker-title">Uludağ Üniversitesi Cerrahi Anabilim Dalı</div>
+                            </div>
+                            <!-- 6 -->
+                            <div class="speaker-card">
+                                <img src="k/hasan_alkan.jpg" alt="Doç. Dr. Hasan ALKAN" class="speaker-img">
+                                <div class="speaker-name">Doç. Dr. Hasan ALKAN</div>
+                                <div class="speaker-title">Selçuk Üniversitesi Doğum ve Jinekoloji Anabilim Dalı</div>
+                            </div>
+                            <!-- 7 -->
+                            <div class="speaker-card">
+                                <img src="k/ekrem_cagatay_colakoglu.jpg" alt="Doç. Dr. Ekrem Çağatay ÇOLAKOĞLU"
+                                    class="speaker-img">
+                                <div class="speaker-name">Doç. Dr. Ekrem Çağatay ÇOLAKOĞLU</div>
+                                <div class="speaker-title">Ankara Üniversitesi İç Hastalıkları Anabilim Dalı</div>
+                            </div>
+                            <!-- 8 -->
+                            <div class="speaker-card">
+                                <img src="k/mehmet_zeki_deveci.jpg" alt="Doç. Dr. Mehmet Zeki DEVECİ"
+                                    class="speaker-img">
+                                <div class="speaker-name">Doç. Dr. Mehmet Zeki DEVECİ</div>
+                                <div class="speaker-title">Mustafa Kemal Üniversitesi Cerrahi Anabilim Dalı</div>
+                            </div>
+                            <!-- 9 -->
+                            <div class="speaker-card">
+                                <img src="k/oya_balik.jpg" alt="Dr.Vet. Hekim Dr. Oya BALIK" class="speaker-img">
+                                <div class="speaker-name">Dr.Vet. Hekim Dr. Oya BALIK</div>
+                                <div class="speaker-title">Alpha Veteriner Kliniği</div>
+                            </div>
+                            <!-- 10 -->
+                            <div class="speaker-card">
+                                <img src="k/ismail_ozkaptan.jpg" alt="Uzm. Vet. Hek. İsmail ÖZKAPTAN"
+                                    class="speaker-img">
+                                <div class="speaker-name">Uzm. Vet. Hek. İsmail ÖZKAPTAN</div>
+                                <div class="speaker-title">Terapist Veteriner Polikliniği</div>
+                            </div>
+                            <!-- 11 -->
+                            <div class="speaker-card">
+                                <img src="k/batuhan_elifoglu.jpeg" alt="Vet. Hek. Batuhan ELİFOĞLU" class="speaker-img">
+                                <div class="speaker-name">Vet. Hek. Batuhan ELİFOĞLU</div>
+                                <div class="speaker-title">Veteriner Diş Merkezi - Petdent</div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
