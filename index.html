@@ -894,6 +894,28 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
+        /* --- REGISTRATION & ACCOMMODATION GRID --- */
+        .registration-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .registration-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+        }
+
+        .acco-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 
@@ -1349,12 +1371,79 @@
                 </div>
 
                 <div id="kayit-content" class="content-section">
-                    <div class="glass-box">
-                        <h2 class="page-title">Kayıt ve Konaklama</h2>
-                        <div class="loader-container">
-                            <div class="spinner"></div>
-                            <div class="loading-text">Kayıt ve konaklama detayları yakında...</div>
+                    <div class="registration-grid">
+
+                        <!-- KAYIT KISMI -->
+                        <div class="glass-box">
+                            <h2 class="page-title">Kayıt</h2>
+                            <div class="loader-container">
+                                <div class="spinner"></div>
+                                <div class="loading-text">Kayıt detayları yakında...</div>
+                            </div>
                         </div>
+
+                        <!-- KONAKLAMA KISMI -->
+                        <div class="glass-box">
+                            <h2 class="page-title">Konaklama</h2>
+                            <div class="accommodation-content">
+
+                                <!-- ERASMUS EVİ -->
+                                <img src="erasmus.jpg" alt="Erasmus Evi" class="acco-img">
+                                <div class="accommodation-text"
+                                    style="color: #ddd; line-height: 1.6; margin-bottom: 30px;">
+                                    <h3 style="color:var(--accent-blue); font-size:1.3rem; margin-bottom:15px;">Erasmus
+                                        Evi Otel’inde Konaklama</h3>
+
+                                    <p style="margin-bottom:15px;">
+                                        <a href="https://www.selcuk.edu.tr/Birim/daire-baskanliklari/saglik_kultur/1956/erasmus-konukevi/42937#!"
+                                            target="_blank"
+                                            style="color:var(--accent-blue); text-decoration:underline; font-weight:600;">
+                                            <i class="fas fa-external-link-alt"></i> Detaylı oda fotoğrafları için
+                                            tıklayabilirsiniz
+                                        </a>
+                                    </p>
+
+                                    <ul
+                                        style="list-style-type: disc; padding-left: 20px; color: rgba(255,255,255,0.8);">
+                                        <li style="margin-bottom:10px;">Erasmus Evi’nde erkek ve kadın apartları ayrı
+                                            şekildedir.</li>
+                                        <li style="margin-bottom:10px;">Erasmus Evi’nde öğrenci katı odalarda
+                                            ihtiyaçlarınızı karşılamak için özel alanlar bulunduğunuz katta ortaktır.
+                                        </li>
+                                        <li style="margin-bottom:10px;">Erasmus Evi’nde Apart odalarda ihtiyaçlarınızı
+                                            karşılamak için özel alanlar bulunduğunuz katta ortaktır.</li>
+                                        <li style="margin-bottom:10px;">Erasmus Evi’nde suit odalarda ihtiyaçlarınızı
+                                            karşılamak için özel alanlar odanın içerisinde size özeldir.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- KONUK EVİ -->
+                                <img src="konukevi.jpg" alt="Konuk Evi" class="acco-img">
+                                <div class="accommodation-text" style="color: #ddd; line-height: 1.6;">
+                                    <h3 style="color:var(--accent-blue); font-size:1.3rem; margin-bottom:15px;">Konuk
+                                        Evi Otel’inde Konaklama</h3>
+
+                                    <p style="margin-bottom:15px;">
+                                        <a href="https://www.selcuk.edu.tr/Birim/daire-baskanliklari/saglik_kultur/1956/selcuk-universitesi-konukevi/42938#!"
+                                            target="_blank"
+                                            style="color:var(--accent-blue); text-decoration:underline; font-weight:600;">
+                                            <i class="fas fa-external-link-alt"></i> Detaylı oda fotoğrafları için
+                                            tıklayabilirsiniz
+                                        </a>
+                                    </p>
+
+                                    <ul
+                                        style="list-style-type: disc; padding-left: 20px; color: rgba(255,255,255,0.8);">
+                                        <li style="margin-bottom:10px;">Konuk Evi’nde odalar standarttır ve özel alanlar
+                                            odanın içerisindedir. Odalarda tek kişilik olacak şekilde yataklar
+                                            mevcuttur.</li>
+                                        <li style="margin-bottom:10px;">Aile odasında bir çift kişilik yatak ve 2 adet
+                                            tek kişilik yatak vardır. 3 kişilik konaklamaya uygundur.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
