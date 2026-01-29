@@ -904,7 +904,8 @@
 
         @media (min-width: 992px) {
             .registration-grid {
-                grid-template-columns: 1fr 1fr;
+                /* Changed to give more space to accommodation (2 columns inside) */
+                grid-template-columns: 35% 65%;
                 align-items: start;
             }
         }
@@ -912,9 +913,76 @@
         .acco-img {
             width: 100%;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .acco-img:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-blue);
+        }
+
+        /* LIGHTBOX STYLES */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-blue);
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(51, 173, 255, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Side-by-side layout for accommodation within the section */
+        .accommodation-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 992px) {
+            .accommodation-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Override inline styles for tighter spacing in registration */
+        .registration-content p {
+            margin-bottom: 15px !important;
+        }
+
+        .registration-content ul li {
+            margin-bottom: 5px !important;
         }
     </style>
 </head>
@@ -1376,9 +1444,38 @@
                         <!-- KAYIT KISMI -->
                         <div class="glass-box">
                             <h2 class="page-title">Kayıt</h2>
-                            <div class="loader-container">
-                                <div class="spinner"></div>
-                                <div class="loading-text">Kayıt detayları yakında...</div>
+                            <div class="registration-content" style="color: #ddd; line-height: 1.6;">
+                                <p style="margin-bottom: 20px;">
+                                    <a href="https://forms.gle/SjqepmWvj5MXnnY2A" target="_blank" class="btn-primary"
+                                        style="display:inline-block; padding: 10px 20px; background: var(--accent-blue); color: #fff; text-decoration: none; border-radius: 5px; font-weight: 600;">
+                                        <i class="fas fa-file-alt"></i> Dış Katılım Kayıt Formu
+                                    </a>
+                                </p>
+                                <p style="margin-bottom: 20px;">
+                                    <span class="btn-primary disabled"
+                                        style="display:inline-block; padding: 10px 20px; background: #555; color: #aaa; border-radius: 5px; font-weight: 600; cursor: not-allowed;">
+                                        <i class="fas fa-clock"></i> Selçuk Üniversitesi Kayıt Formu (YAKINDA)
+                                    </span>
+                                </p>
+
+                                <p style="margin-bottom: 15px;">
+                                    Kayıt formunu doldurduktan sonra gala ücreti dekontlarını bizlere
+                                    <a href="mailto:ivsaturkey.konya@ivsamo.org"
+                                        style="color:var(--accent-blue);">ivsaturkey.konya@ivsamo.org</a>
+                                    adresinden gönderdiğiniz takdirde sizlere kayıt onay mesajı gönderilecektir.
+                                </p>
+
+                                <ul
+                                    style="list-style-type: disc; padding-left: 20px; margin-top: 15px; color: rgba(255,255,255,0.8);">
+                                    <li style="margin-bottom:10px;">Kayıt ücreti alınmamaktadır. Gala gecesine katılım
+                                        sağlamak istiyorsanız eğer sadece gala ücreti için ücret ödemelisiniz.</li>
+                                    <li style="margin-bottom:10px;">Gala ücretimiz <strong>850 TL</strong>’dir. Katılmak
+                                        isteyenler kayıt formunda belirtebilirler.</li>
+                                    <li style="margin-bottom:10px;">Kaydolduğunuz takdirde sizlere yaka kartı
+                                        oluşturulacaktır. Yaka kartlarınız ile kolokyum merkezine giriş yapabilir,
+                                        eşantiyonlardan faydalanabilir, sponsor standlarını gezebilir ve ikramlıklardan
+                                        yararlanabilirler.</li>
+                                </ul>
                             </div>
                         </div>
 
@@ -1387,59 +1484,66 @@
                             <h2 class="page-title">Konaklama</h2>
                             <div class="accommodation-content">
 
-                                <!-- ERASMUS EVİ -->
-                                <img src="erasmus.jpg" alt="Erasmus Evi" class="acco-img">
-                                <div class="accommodation-text"
-                                    style="color: #ddd; line-height: 1.6; margin-bottom: 30px;">
-                                    <h3 style="color:var(--accent-blue); font-size:1.3rem; margin-bottom:15px;">Erasmus
-                                        Evi Otel’inde Konaklama</h3>
+                                <!-- ERASMUS EVİ BLOCK -->
+                                <div>
+                                    <img src="erasmus.jpg" alt="Erasmus Evi" class="acco-img"
+                                        onclick="openLightbox(this.src)">
+                                    <div class="accommodation-text" style="color: #ddd; line-height: 1.6;">
+                                        <h3 style="color:var(--accent-blue); font-size:1.3rem; margin-bottom:15px;">
+                                            Erasmus Evi Otel’inde Konaklama</h3>
 
-                                    <p style="margin-bottom:15px;">
-                                        <a href="https://www.selcuk.edu.tr/Birim/daire-baskanliklari/saglik_kultur/1956/erasmus-konukevi/42937#!"
-                                            target="_blank"
-                                            style="color:var(--accent-blue); text-decoration:underline; font-weight:600;">
-                                            <i class="fas fa-external-link-alt"></i> Detaylı oda fotoğrafları için
-                                            tıklayabilirsiniz
-                                        </a>
-                                    </p>
+                                        <p style="margin-bottom:15px;">
+                                            <a href="https://www.selcuk.edu.tr/Birim/daire-baskanliklari/saglik_kultur/1956/erasmus-konukevi/42937#!"
+                                                target="_blank"
+                                                style="color:var(--accent-blue); text-decoration:underline; font-weight:600;">
+                                                <i class="fas fa-external-link-alt"></i> Detaylı oda fotoğrafları için
+                                                tıklayabilirsiniz
+                                            </a>
+                                        </p>
 
-                                    <ul
-                                        style="list-style-type: disc; padding-left: 20px; color: rgba(255,255,255,0.8);">
-                                        <li style="margin-bottom:10px;">Erasmus Evi’nde erkek ve kadın apartları ayrı
-                                            şekildedir.</li>
-                                        <li style="margin-bottom:10px;">Erasmus Evi’nde öğrenci katı odalarda
-                                            ihtiyaçlarınızı karşılamak için özel alanlar bulunduğunuz katta ortaktır.
-                                        </li>
-                                        <li style="margin-bottom:10px;">Erasmus Evi’nde Apart odalarda ihtiyaçlarınızı
-                                            karşılamak için özel alanlar bulunduğunuz katta ortaktır.</li>
-                                        <li style="margin-bottom:10px;">Erasmus Evi’nde suit odalarda ihtiyaçlarınızı
-                                            karşılamak için özel alanlar odanın içerisinde size özeldir.</li>
-                                    </ul>
+                                        <ul
+                                            style="list-style-type: disc; padding-left: 20px; color: rgba(255,255,255,0.8);">
+                                            <li style="margin-bottom:10px;">Erasmus Evi’nde erkek ve kadın apartları
+                                                ayrı şekildedir.</li>
+                                            <li style="margin-bottom:10px;">Erasmus Evi’nde öğrenci katı odalarda
+                                                ihtiyaçlarınızı karşılamak için özel alanlar bulunduğunuz katta
+                                                ortaktır.</li>
+                                            <li style="margin-bottom:10px;">Erasmus Evi’nde Apart odalarda
+                                                ihtiyaçlarınızı karşılamak için özel alanlar bulunduğunuz katta
+                                                ortaktır.</li>
+                                            <li style="margin-bottom:10px;">Erasmus Evi’nde suit odalarda
+                                                ihtiyaçlarınızı karşılamak için özel alanlar odanın içerisinde size
+                                                özeldir.</li>
+                                        </ul>
+                                    </div>
                                 </div>
 
-                                <!-- KONUK EVİ -->
-                                <img src="konukevi.jpg" alt="Konuk Evi" class="acco-img">
-                                <div class="accommodation-text" style="color: #ddd; line-height: 1.6;">
-                                    <h3 style="color:var(--accent-blue); font-size:1.3rem; margin-bottom:15px;">Konuk
-                                        Evi Otel’inde Konaklama</h3>
+                                <!-- KONUK EVİ BLOCK -->
+                                <div>
+                                    <img src="konukevi.jpg" alt="Konuk Evi" class="acco-img"
+                                        onclick="openLightbox(this.src)">
+                                    <div class="accommodation-text" style="color: #ddd; line-height: 1.6;">
+                                        <h3 style="color:var(--accent-blue); font-size:1.3rem; margin-bottom:15px;">
+                                            Konuk Evi Otel’inde Konaklama</h3>
 
-                                    <p style="margin-bottom:15px;">
-                                        <a href="https://www.selcuk.edu.tr/Birim/daire-baskanliklari/saglik_kultur/1956/selcuk-universitesi-konukevi/42938#!"
-                                            target="_blank"
-                                            style="color:var(--accent-blue); text-decoration:underline; font-weight:600;">
-                                            <i class="fas fa-external-link-alt"></i> Detaylı oda fotoğrafları için
-                                            tıklayabilirsiniz
-                                        </a>
-                                    </p>
+                                        <p style="margin-bottom:15px;">
+                                            <a href="https://www.selcuk.edu.tr/Birim/daire-baskanliklari/saglik_kultur/1956/selcuk-universitesi-konukevi/42938#!"
+                                                target="_blank"
+                                                style="color:var(--accent-blue); text-decoration:underline; font-weight:600;">
+                                                <i class="fas fa-external-link-alt"></i> Detaylı oda fotoğrafları için
+                                                tıklayabilirsiniz
+                                            </a>
+                                        </p>
 
-                                    <ul
-                                        style="list-style-type: disc; padding-left: 20px; color: rgba(255,255,255,0.8);">
-                                        <li style="margin-bottom:10px;">Konuk Evi’nde odalar standarttır ve özel alanlar
-                                            odanın içerisindedir. Odalarda tek kişilik olacak şekilde yataklar
-                                            mevcuttur.</li>
-                                        <li style="margin-bottom:10px;">Aile odasında bir çift kişilik yatak ve 2 adet
-                                            tek kişilik yatak vardır. 3 kişilik konaklamaya uygundur.</li>
-                                    </ul>
+                                        <ul
+                                            style="list-style-type: disc; padding-left: 20px; color: rgba(255,255,255,0.8);">
+                                            <li style="margin-bottom:10px;">Konuk Evi’nde odalar standarttır ve özel
+                                                alanlar odanın içerisindedir. Odalarda tek kişilik olacak şekilde
+                                                yataklar mevcuttur.</li>
+                                            <li style="margin-bottom:10px;">Aile odasında bir çift kişilik yatak ve 2
+                                                adet tek kişilik yatak vardır. 3 kişilik konaklamaya uygundur.</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1582,6 +1686,11 @@
         </div>
     </footer>
 
+    <!-- LIGHTBOX OVERLAY -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Tam ekran görsel">
+    </div>
+
     <script>
         function showContent(contentId) {
             // 1. Tüm içerikleri gizle
@@ -1595,29 +1704,20 @@
             document.getElementById('nav-list').classList.remove('show');
 
             // --- GOOGLE ANALYTICS TAKİP KODU (YENİ) ---
-            // Eğer gtag yüklüyse, Google'a hangi sayfaya geçildiğini bildir.
             if (typeof gtag === 'function') {
                 gtag('event', 'sayfa_goruntuleme', {
-                    'page_title': contentId.replace('-content', '').toUpperCase(), // Örn: DAVET, KURULLAR
+                    'page_title': contentId.replace('-content', '').toUpperCase(),
                     'page_location': contentId
                 });
             }
 
             // 4. OTOMATİK KAYDIRMA
             if (contentId === 'home-content') {
-                // Ana sayfaysa en tepeye çık
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                // Diğer sayfalarda sağ panele odaklan
                 setTimeout(() => {
-                    // Mobilde başlık alanı sabit olmadığı için direkt içeriğe kaydır
-                    // Masaüstünde de sağ panele odaklanmak mantıklı
                     const rightPanel = document.querySelector('.right-panel');
-
-                    // Mobilde daha fazla offset (header için)
-                    // Masaüstünde biraz daha az olabilir
                     const offset = window.innerWidth <= 1024 ? 90 : 120;
-
                     const bodyRect = document.body.getBoundingClientRect().top;
                     const elementRect = rightPanel.getBoundingClientRect().top;
                     const elementPosition = elementRect - bodyRect;
@@ -1633,6 +1733,18 @@
 
         function toggleMenu() {
             document.getElementById('nav-list').classList.toggle('show');
+        }
+
+        // Lightbox Functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
         }
     </script>
 </body>
